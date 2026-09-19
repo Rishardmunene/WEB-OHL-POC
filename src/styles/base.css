@@ -1,0 +1,423 @@
+/* =============================================================================
+   BASE — reset, elements, container, buttons, ornament, utilities
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Anchors scroll clear of the sticky header. */
+  scroll-padding-top: calc(var(--h-header-row-1) + var(--h-header-row-2));
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-body);
+  line-height: var(--lh-body);
+  background-color: var(--surface-dark);
+  color: var(--text-on-dark);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The forensic stylesheet set `overflow-x: hidden` on the body, which hides
+   horizontal overflow instead of preventing it — the Stage 0 baseline overflowed
+   by up to 545px and the symptom was masked. Omitted deliberately so the QA
+   harness can still detect real overflow. */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Numerals are set in the sans face even beside serif labels — OBSERVED,
+   spec §C.3, and one of the details the forensic report did get right. */
+.numeral {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+/* -----------------------------------------------------------------------------
+   FOCUS — spec J-10. Entirely a refinement: no focus state is observable in the
+   reference. Uses :focus-visible so pointer users never see it.
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring, var(--gold));
+  outline-offset: var(--focus-ring-offset);
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: calc(var(--z-header) + 10);
+  padding: 12px 24px;
+  background: var(--gold);
+  color: var(--surface-dark);
+  font-weight: var(--fw-medium);
+  transition: transform var(--motion-normal) var(--ease-standard);
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   CONTAINER — spec §C.1 / §E.2
+   0.737 x viewport, capped at the locked 1280px. At the 1728px reference
+   viewport this yields 1274px, ratio 0.7370.
+   -------------------------------------------------------------------------- */
+.container {
+  width: min(var(--container-max), var(--container-ratio));
+  margin-inline: auto;
+}
+
+/* Below 1024 the 0.737 ratio would leave impractically wide margins, so the
+   container switches to near-full-width. INFERRED (spec §E.2) — no sub-desktop
+   evidence exists. */
+@media (max-width: 1023px) {
+  .container {
+    width: auto;
+    margin-inline: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    margin-inline: 20px;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   SECTIONS
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: var(--section-pad-y);
+}
+
+.section--dark {
+  background-color: var(--surface-dark);
+}
+
+.section--deep {
+  background-color: var(--surface-deep);
+}
+
+.section--light {
+  background-color: var(--surface-light);
+}
+
+.section-heading {
+  font-size: var(--fs-section);
+}
+
+.section-lead {
+  color: var(--fg-muted);
+  max-width: 62ch;
+}
+
+.section-head--center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* -----------------------------------------------------------------------------
+   BUTTONS — spec §C.7
+   Square (radius 0) and shadowless. Only one hover state is OBSERVED anywhere
+   in the reference: "Learn More" going to gold fill with dark text. Every other
+   hover is UNCERTAIN and is treated as a minimal refinement.
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 34px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: var(--fw-medium);
+  text-align: center;
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-0);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-normal) var(--ease-standard),
+    color var(--motion-normal) var(--ease-standard),
+    border-color var(--motion-normal) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
+}
+
+/* Press feedback — refinement, spec §D.2. transform only, so it composites. */
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--gold {
+  background-color: var(--gold);
+  color: var(--surface-dark); /* dark glyph/text on gold — 7.13:1. Never white (J-5) */
+}
+
+.btn--gold:hover {
+  background-color: #c0a061;
+}
+
+/* Correction H-13. The forensic markup rendered this as a transparent button
+   with a gold border and gold text. The evidence shows the REST state as a dark
+   fill with white text and no border; gold fill is the HOVER state. The
+   forensic version effectively showed the hover state permanently. */
+.btn--learn {
+  background-color: var(--surface-dark);
+  color: var(--text-on-dark);
+  border: none;
+}
+
+.btn--learn:hover {
+  background-color: var(--gold);
+  color: var(--surface-dark);
+}
+
+.btn--outline-light {
+  background-color: transparent;
+  border: 1px solid var(--hairline-on-dark);
+  color: var(--text-on-dark);
+}
+
+.btn--outline-light:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Outline on light sections — OBSERVED as a white fill with a thin dark border
+   ("Meet Attorney"). Hover is UNCERTAIN, so it stays minimal. */
+.btn--outline-dark {
+  background-color: var(--surface-light);
+  border: 1px solid #d0d0d0;
+  color: var(--text-on-light);
+}
+
+.btn--outline-dark:hover {
+  border-color: var(--gold-on-light);
+  color: var(--gold-on-light);
+}
+
+/* Form submit — OBSERVED as a white fill with dark text. */
+.btn--white {
+  background-color: var(--surface-light);
+  color: var(--text-on-light);
+}
+
+.btn--white:hover {
+  background-color: #ebe6dc;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* -----------------------------------------------------------------------------
+   ORNAMENTAL SEPARATOR — spec §C.6, correction M-6
+   The signature motif of the reference, used under almost every section heading.
+
+   Correction M-12. Measured at pixel level from two independent occurrences (the
+   hero on dark, the attorneys heading on light), which agree exactly:
+
+     - two CONTINUOUS parallel gold hairlines spanning the full width
+     - two short vertical gold hairlines CROSSING them, overhanging top and bottom
+     - one saturated gold node filling the cell at the intersection
+
+   The earlier build broke the horizontals into a short rule and a long rule with
+   a four-point star between them. The rules are not broken; the verticals cross
+   over them. Measured box 38 x 18px at a 744px capture of the 1728px reference
+   => 0.051 x 0.024 of page width => 88 x 42px at 1728.
+
+   The cross is centred under section headings and offset left in the hero.
+   -------------------------------------------------------------------------- */
+.ornament {
+  --orn-w: 88px;
+  --orn-h: 42px;
+  --orn-gap: 8px;  /* separation of each hairline pair, and the node's size */
+  --orn-cross-x: 50%;
+
+  position: relative;
+  display: block;
+  width: var(--orn-w);
+  height: var(--orn-h);
+  flex: none;
+  margin-block: var(--stack-md);
+
+  /* Correction M-16. The ornament uses the SAME gold in both polarities, and is
+     deliberately exempt from the two-gold rule (J-5), which governs text and
+     meaningful graphics. This separator is decorative and aria-hidden, so WCAG
+     1.4.3/1.4.11 do not apply to it, and forcing --gold-on-light here made it
+     markedly darker than the reference.
+
+     Measured in both polarities, the hairlines are #CFAF71 at ~50% alpha:
+       on white  -> #E2D6BF observed vs #E8D9BC predicted
+       on the hero photo -> #76715A observed vs #766B52 predicted
+     The node is full-strength gold. Alpha is carried in the colours rather than
+     by `opacity`, because an `opacity` on the cross would dim its node too. */
+  --orn-hairline: rgb(207 175 113 / 0.5);
+  --orn-node: var(--gold);
+}
+
+/* The two continuous horizontals. */
+.ornament__rules {
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: var(--orn-gap);
+  transform: translateY(-50%);
+  border-top: 1px solid var(--orn-hairline);
+  border-bottom: 1px solid var(--orn-hairline);
+}
+
+/* The two verticals, crossing the horizontals and overhanging them. */
+.ornament__cross {
+  position: absolute;
+  inset-block: 0;
+  left: var(--orn-cross-x);
+  width: var(--orn-gap);
+  transform: translateX(-50%);
+  border-left: 1px solid var(--orn-hairline);
+  border-right: 1px solid var(--orn-hairline);
+}
+
+/* The saturated node at the intersection — reads brighter than the hairlines. */
+.ornament__cross::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--orn-gap);
+  height: var(--orn-gap);
+  transform: translate(-50%, -50%);
+  background-color: var(--orn-node);
+}
+
+/* Centred under section headings — already the default cross position. */
+.ornament--center {
+  margin-inline: auto;
+}
+
+/* Correction M-7: "Meet The Partners" is flanked on BOTH sides. The rules
+   stretch to fill the row and the cross sits near the inner end, beside the
+   title. */
+.ornament--flank {
+  /* Rule to the RIGHT of the title: cross sits at its left (inner) end. */
+  --orn-cross-x: 22px;
+  flex: 1;
+  width: auto;
+}
+
+.ornament--flank-left {
+  /* Rule to the LEFT of the title: cross sits at its right (inner) end. */
+  --orn-cross-x: calc(100% - 22px);
+}
+
+/* Footer ornament runs at container scale — spec §C.7. */
+.ornament--wide {
+  flex: 1;
+  width: auto;
+}
+
+/* -----------------------------------------------------------------------------
+   HAIRLINES — spec §C.5 catalogues seven; the forensic report modelled three.
+   -------------------------------------------------------------------------- */
+.hairline-top {
+  border-top: 1px solid var(--hairline);
+}
+
+.hairline-bottom {
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* -----------------------------------------------------------------------------
+   SCROLL REVEAL — refinement, spec J-4. Driven by IntersectionObserver (never a
+   scroll listener, spec §G) and animating transform/opacity only.
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--motion-slow) var(--ease-standard),
+    transform var(--motion-slow) var(--ease-standard);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reduced motion keeps the content, drops the movement (spec §D.2). Also the
+   no-JS fallback: without the observer nothing would ever become visible. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

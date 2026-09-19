@@ -1,0 +1,2125 @@
+{
+  "label": "stage9",
+  "url": "http://localhost:5173",
+  "when": "2026-09-19T08:41:22.724Z",
+  "viewports": {
+    "375": {
+      "viewport": {
+        "name": "375",
+        "width": 375,
+        "height": 812
+      },
+      "pageWidth": 375,
+      "containerPx": 335,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 335,
+          "ratio": 0.8933,
+          "delta": 0.1563,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 335,
+          "ratio": 1,
+          "delta": 0.68,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": -335,
+          "ratio": -1,
+          "delta": -1.02,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 335,
+          "ratio": 1,
+          "delta": 0.759,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": -335,
+          "ratio": -1,
+          "delta": -1.013,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": -335,
+          "ratio": -1,
+          "delta": -1.018,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 573,
+          "ratio": 1.5279,
+          "delta": 0.9619,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 60,
+          "ratio": 0.16,
+          "delta": 0.083,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 124,
+          "ratio": 0.3307,
+          "delta": 0.1727,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 190,
+          "ratio": 0.5067,
+          "delta": 0.3347,
+          "status": "FAIL"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 375,
+        "scrollW": 375,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 16
+      },
+      "brokenImages": [],
+      "oversizedImages": [
+        {
+          "src": "hero-background.jpg",
+          "naturalW": 1920,
+          "renderedW": 375,
+          "factor": 5.12
+        },
+        {
+          "src": "prefooter-band.jpg",
+          "naturalW": 1920,
+          "renderedW": 375,
+          "factor": 5.12
+        },
+        {
+          "src": "form-background.jpg",
+          "naturalW": 1600,
+          "renderedW": 375,
+          "factor": 4.27
+        },
+        {
+          "src": "intro-primary.jpg",
+          "naturalW": 550,
+          "renderedW": 160,
+          "factor": 3.44
+        },
+        {
+          "src": "intro-secondary.jpg",
+          "naturalW": 550,
+          "renderedW": 160,
+          "factor": 3.44
+        },
+        {
+          "src": "history-backdrop.jpg",
+          "naturalW": 1200,
+          "renderedW": 375,
+          "factor": 3.2
+        },
+        {
+          "src": "blog-featured.jpg",
+          "naturalW": 1000,
+          "renderedW": 335,
+          "factor": 2.99
+        },
+        {
+          "src": "intro-wide.jpg",
+          "naturalW": 800,
+          "renderedW": 335,
+          "factor": 2.39
+        },
+        {
+          "src": "stat-panel-background.jpg",
+          "naturalW": 800,
+          "renderedW": 335,
+          "factor": 2.39
+        },
+        {
+          "src": "history-portrait.jpg",
+          "naturalW": 590,
+          "renderedW": 271,
+          "factor": 2.18
+        },
+        {
+          "src": "blog-1.jpg",
+          "naturalW": 700,
+          "renderedW": 335,
+          "factor": 2.09
+        },
+        {
+          "src": "blog-2.jpg",
+          "naturalW": 700,
+          "renderedW": 335,
+          "factor": 2.09
+        },
+        {
+          "src": "blog-3.jpg",
+          "naturalW": 700,
+          "renderedW": 335,
+          "factor": 2.09
+        },
+        {
+          "src": "blog-4.jpg",
+          "naturalW": 700,
+          "renderedW": 335,
+          "factor": 2.09
+        },
+        {
+          "src": "blog-5.jpg",
+          "naturalW": 700,
+          "renderedW": 335,
+          "factor": 2.09
+        },
+        {
+          "src": "blog-6.jpg",
+          "naturalW": 700,
+          "renderedW": 335,
+          "factor": 2.09
+        }
+      ],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "notes": []
+    },
+    "390": {
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "pageWidth": 390,
+      "containerPx": 350,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 350,
+          "ratio": 0.8974,
+          "delta": 0.1604,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 350,
+          "ratio": 1,
+          "delta": 0.68,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": -350,
+          "ratio": -1,
+          "delta": -1.02,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 350,
+          "ratio": 1,
+          "delta": 0.759,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": -350,
+          "ratio": -1,
+          "delta": -1.013,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": -350,
+          "ratio": -1,
+          "delta": -1.018,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 573,
+          "ratio": 1.4691,
+          "delta": 0.9031,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 60,
+          "ratio": 0.1538,
+          "delta": 0.0768,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 124,
+          "ratio": 0.3179,
+          "delta": 0.1599,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 190,
+          "ratio": 0.4872,
+          "delta": 0.3152,
+          "status": "FAIL"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 390,
+        "scrollW": 390,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 10
+      },
+      "brokenImages": [],
+      "oversizedImages": [
+        {
+          "src": "hero-background.jpg",
+          "naturalW": 1920,
+          "renderedW": 390,
+          "factor": 4.92
+        },
+        {
+          "src": "prefooter-band.jpg",
+          "naturalW": 1920,
+          "renderedW": 390,
+          "factor": 4.92
+        },
+        {
+          "src": "form-background.jpg",
+          "naturalW": 1600,
+          "renderedW": 390,
+          "factor": 4.1
+        },
+        {
+          "src": "intro-primary.jpg",
+          "naturalW": 550,
+          "renderedW": 167,
+          "factor": 3.29
+        },
+        {
+          "src": "intro-secondary.jpg",
+          "naturalW": 550,
+          "renderedW": 167,
+          "factor": 3.29
+        },
+        {
+          "src": "history-backdrop.jpg",
+          "naturalW": 1200,
+          "renderedW": 390,
+          "factor": 3.08
+        },
+        {
+          "src": "blog-featured.jpg",
+          "naturalW": 1000,
+          "renderedW": 350,
+          "factor": 2.86
+        },
+        {
+          "src": "intro-wide.jpg",
+          "naturalW": 800,
+          "renderedW": 350,
+          "factor": 2.29
+        },
+        {
+          "src": "stat-panel-background.jpg",
+          "naturalW": 800,
+          "renderedW": 350,
+          "factor": 2.29
+        },
+        {
+          "src": "history-portrait.jpg",
+          "naturalW": 590,
+          "renderedW": 286,
+          "factor": 2.06
+        }
+      ],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "notes": []
+    },
+    "480": {
+      "viewport": {
+        "name": "480",
+        "width": 480,
+        "height": 800
+      },
+      "pageWidth": 480,
+      "containerPx": 440,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 440,
+          "ratio": 0.9167,
+          "delta": 0.1797,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 440,
+          "ratio": 1,
+          "delta": 0.68,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": -440,
+          "ratio": -1,
+          "delta": -1.02,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 440,
+          "ratio": 1,
+          "delta": 0.759,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": -440,
+          "ratio": -1,
+          "delta": -1.013,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": -440,
+          "ratio": -1,
+          "delta": -1.018,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 560,
+          "ratio": 1.1667,
+          "delta": 0.6007,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 60,
+          "ratio": 0.125,
+          "delta": 0.048,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 124,
+          "ratio": 0.2583,
+          "delta": 0.1003,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 190,
+          "ratio": 0.3958,
+          "delta": 0.2238,
+          "status": "FAIL"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 480,
+        "scrollW": 480,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 7
+      },
+      "brokenImages": [],
+      "oversizedImages": [
+        {
+          "src": "hero-background.jpg",
+          "naturalW": 1920,
+          "renderedW": 480,
+          "factor": 4
+        },
+        {
+          "src": "prefooter-band.jpg",
+          "naturalW": 1920,
+          "renderedW": 480,
+          "factor": 4
+        },
+        {
+          "src": "form-background.jpg",
+          "naturalW": 1600,
+          "renderedW": 480,
+          "factor": 3.33
+        },
+        {
+          "src": "intro-primary.jpg",
+          "naturalW": 550,
+          "renderedW": 208,
+          "factor": 2.64
+        },
+        {
+          "src": "intro-secondary.jpg",
+          "naturalW": 550,
+          "renderedW": 208,
+          "factor": 2.64
+        },
+        {
+          "src": "history-backdrop.jpg",
+          "naturalW": 1200,
+          "renderedW": 480,
+          "factor": 2.5
+        },
+        {
+          "src": "blog-featured.jpg",
+          "naturalW": 1000,
+          "renderedW": 440,
+          "factor": 2.27
+        }
+      ],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "notes": []
+    },
+    "768": {
+      "viewport": {
+        "name": "768",
+        "width": 768,
+        "height": 1024
+      },
+      "pageWidth": 768,
+      "containerPx": 704,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 704,
+          "ratio": 0.9167,
+          "delta": 0.1797,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 339.5,
+          "ratio": 0.4822,
+          "delta": 0.1622,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 25,
+          "ratio": 0.0355,
+          "delta": 0.0155,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 340,
+          "ratio": 0.483,
+          "delta": 0.242,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 24,
+          "ratio": 0.0341,
+          "delta": 0.0211,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 16,
+          "ratio": 0.0227,
+          "delta": 0.0047,
+          "status": "PASS"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 520,
+          "ratio": 0.6771,
+          "delta": 0.1111,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 60,
+          "ratio": 0.0781,
+          "delta": 0.0011,
+          "status": "PASS"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 116,
+          "ratio": 0.151,
+          "delta": -0.007,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 190,
+          "ratio": 0.2474,
+          "delta": 0.0754,
+          "status": "FAIL"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 768,
+        "scrollW": 768,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 13
+      },
+      "brokenImages": [],
+      "oversizedImages": [
+        {
+          "src": "attorney-1.jpg",
+          "naturalW": 600,
+          "renderedW": 224,
+          "factor": 2.68
+        },
+        {
+          "src": "attorney-2.jpg",
+          "naturalW": 600,
+          "renderedW": 224,
+          "factor": 2.68
+        },
+        {
+          "src": "attorney-3.jpg",
+          "naturalW": 600,
+          "renderedW": 224,
+          "factor": 2.68
+        },
+        {
+          "src": "hero-background.jpg",
+          "naturalW": 1920,
+          "renderedW": 768,
+          "factor": 2.5
+        },
+        {
+          "src": "prefooter-band.jpg",
+          "naturalW": 1920,
+          "renderedW": 768,
+          "factor": 2.5
+        },
+        {
+          "src": "stat-panel-background.jpg",
+          "naturalW": 800,
+          "renderedW": 340,
+          "factor": 2.35
+        },
+        {
+          "src": "form-background.jpg",
+          "naturalW": 1600,
+          "renderedW": 768,
+          "factor": 2.08
+        },
+        {
+          "src": "blog-1.jpg",
+          "naturalW": 700,
+          "renderedW": 340,
+          "factor": 2.06
+        },
+        {
+          "src": "blog-2.jpg",
+          "naturalW": 700,
+          "renderedW": 340,
+          "factor": 2.06
+        },
+        {
+          "src": "blog-3.jpg",
+          "naturalW": 700,
+          "renderedW": 340,
+          "factor": 2.06
+        },
+        {
+          "src": "blog-4.jpg",
+          "naturalW": 700,
+          "renderedW": 340,
+          "factor": 2.06
+        },
+        {
+          "src": "blog-5.jpg",
+          "naturalW": 700,
+          "renderedW": 340,
+          "factor": 2.06
+        },
+        {
+          "src": "blog-6.jpg",
+          "naturalW": 700,
+          "renderedW": 340,
+          "factor": 2.06
+        }
+      ],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "notes": []
+    },
+    "1024": {
+      "viewport": {
+        "name": "1024",
+        "width": 1024,
+        "height": 768
+      },
+      "pageWidth": 1024,
+      "containerPx": 754.6875,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 754.7,
+          "ratio": 0.737,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 234.9,
+          "ratio": 0.3112,
+          "delta": -0.0088,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 25,
+          "ratio": 0.0331,
+          "delta": 0.0131,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 175.9,
+          "ratio": 0.2331,
+          "delta": -0.0079,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 17,
+          "ratio": 0.0225,
+          "delta": 0.0095,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 23,
+          "ratio": 0.0305,
+          "delta": 0.0125,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 579.6,
+          "ratio": 0.566,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 78.8,
+          "ratio": 0.077,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 161.8,
+          "ratio": 0.158,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 190,
+          "ratio": 0.1855,
+          "delta": 0.0135,
+          "status": "PASS"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 1024,
+        "scrollW": 1024,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 15
+      },
+      "brokenImages": [],
+      "oversizedImages": [
+        {
+          "src": "intro-primary.jpg",
+          "naturalW": 550,
+          "renderedW": 158,
+          "factor": 3.48
+        },
+        {
+          "src": "intro-secondary.jpg",
+          "naturalW": 550,
+          "renderedW": 158,
+          "factor": 3.48
+        },
+        {
+          "src": "stat-panel-background.jpg",
+          "naturalW": 800,
+          "renderedW": 235,
+          "factor": 3.4
+        },
+        {
+          "src": "history-portrait.jpg",
+          "naturalW": 590,
+          "renderedW": 175,
+          "factor": 3.37
+        },
+        {
+          "src": "blog-1.jpg",
+          "naturalW": 700,
+          "renderedW": 235,
+          "factor": 2.98
+        },
+        {
+          "src": "blog-2.jpg",
+          "naturalW": 700,
+          "renderedW": 235,
+          "factor": 2.98
+        },
+        {
+          "src": "blog-3.jpg",
+          "naturalW": 700,
+          "renderedW": 235,
+          "factor": 2.98
+        },
+        {
+          "src": "blog-4.jpg",
+          "naturalW": 700,
+          "renderedW": 235,
+          "factor": 2.98
+        },
+        {
+          "src": "blog-5.jpg",
+          "naturalW": 700,
+          "renderedW": 235,
+          "factor": 2.98
+        },
+        {
+          "src": "blog-6.jpg",
+          "naturalW": 700,
+          "renderedW": 235,
+          "factor": 2.98
+        },
+        {
+          "src": "blog-featured.jpg",
+          "naturalW": 1000,
+          "renderedW": 361,
+          "factor": 2.77
+        },
+        {
+          "src": "attorney-1.jpg",
+          "naturalW": 600,
+          "renderedW": 236,
+          "factor": 2.54
+        },
+        {
+          "src": "attorney-2.jpg",
+          "naturalW": 600,
+          "renderedW": 236,
+          "factor": 2.54
+        },
+        {
+          "src": "attorney-3.jpg",
+          "naturalW": 600,
+          "renderedW": 236,
+          "factor": 2.54
+        },
+        {
+          "src": "intro-wide.jpg",
+          "naturalW": 800,
+          "renderedW": 341,
+          "factor": 2.35
+        }
+      ],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "notes": []
+    },
+    "1280": {
+      "viewport": {
+        "name": "1280",
+        "width": 1280,
+        "height": 800
+      },
+      "pageWidth": 1280,
+      "containerPx": 943.359375,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 943.4,
+          "ratio": 0.737,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 297.8,
+          "ratio": 0.3157,
+          "delta": -0.0043,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 25,
+          "ratio": 0.0265,
+          "delta": 0.0065,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 223.1,
+          "ratio": 0.2365,
+          "delta": -0.0045,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 17,
+          "ratio": 0.018,
+          "delta": 0.005,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 23,
+          "ratio": 0.0244,
+          "delta": 0.0064,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 724.5,
+          "ratio": 0.566,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 98.5,
+          "ratio": 0.077,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 202.2,
+          "ratio": 0.158,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 220.2,
+          "ratio": 0.172,
+          "delta": 0,
+          "status": "PASS"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 1280,
+        "scrollW": 1280,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 14
+      },
+      "brokenImages": [],
+      "oversizedImages": [
+        {
+          "src": "intro-primary.jpg",
+          "naturalW": 550,
+          "renderedW": 201,
+          "factor": 2.74
+        },
+        {
+          "src": "intro-secondary.jpg",
+          "naturalW": 550,
+          "renderedW": 201,
+          "factor": 2.74
+        },
+        {
+          "src": "history-portrait.jpg",
+          "naturalW": 590,
+          "renderedW": 219,
+          "factor": 2.69
+        },
+        {
+          "src": "stat-panel-background.jpg",
+          "naturalW": 800,
+          "renderedW": 298,
+          "factor": 2.68
+        },
+        {
+          "src": "blog-1.jpg",
+          "naturalW": 700,
+          "renderedW": 298,
+          "factor": 2.35
+        },
+        {
+          "src": "blog-2.jpg",
+          "naturalW": 700,
+          "renderedW": 298,
+          "factor": 2.35
+        },
+        {
+          "src": "blog-3.jpg",
+          "naturalW": 700,
+          "renderedW": 298,
+          "factor": 2.35
+        },
+        {
+          "src": "blog-4.jpg",
+          "naturalW": 700,
+          "renderedW": 298,
+          "factor": 2.35
+        },
+        {
+          "src": "blog-5.jpg",
+          "naturalW": 700,
+          "renderedW": 298,
+          "factor": 2.35
+        },
+        {
+          "src": "blog-6.jpg",
+          "naturalW": 700,
+          "renderedW": 298,
+          "factor": 2.35
+        },
+        {
+          "src": "blog-featured.jpg",
+          "naturalW": 1000,
+          "renderedW": 451,
+          "factor": 2.22
+        },
+        {
+          "src": "attorney-1.jpg",
+          "naturalW": 600,
+          "renderedW": 299,
+          "factor": 2.01
+        },
+        {
+          "src": "attorney-2.jpg",
+          "naturalW": 600,
+          "renderedW": 299,
+          "factor": 2.01
+        },
+        {
+          "src": "attorney-3.jpg",
+          "naturalW": 600,
+          "renderedW": 299,
+          "factor": 2.01
+        }
+      ],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "notes": []
+    },
+    "1440": {
+      "viewport": {
+        "name": "1440",
+        "width": 1440,
+        "height": 900
+      },
+      "pageWidth": 1440,
+      "containerPx": 1061.265625,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 1061.3,
+          "ratio": 0.737,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 337.1,
+          "ratio": 0.3176,
+          "delta": -0.0024,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 25,
+          "ratio": 0.0236,
+          "delta": 0.0036,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 252.6,
+          "ratio": 0.238,
+          "delta": -0.003,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 17,
+          "ratio": 0.016,
+          "delta": 0.003,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 23,
+          "ratio": 0.0217,
+          "delta": 0.0037,
+          "status": "PASS"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 815,
+          "ratio": 0.566,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 110.9,
+          "ratio": 0.077,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 227.5,
+          "ratio": 0.158,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 247.7,
+          "ratio": 0.172,
+          "delta": 0,
+          "status": "PASS"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 1440,
+        "scrollW": 1440,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 10
+      },
+      "brokenImages": [],
+      "oversizedImages": [
+        {
+          "src": "intro-primary.jpg",
+          "naturalW": 550,
+          "renderedW": 228,
+          "factor": 2.41
+        },
+        {
+          "src": "intro-secondary.jpg",
+          "naturalW": 550,
+          "renderedW": 228,
+          "factor": 2.41
+        },
+        {
+          "src": "history-portrait.jpg",
+          "naturalW": 590,
+          "renderedW": 246,
+          "factor": 2.4
+        },
+        {
+          "src": "stat-panel-background.jpg",
+          "naturalW": 800,
+          "renderedW": 337,
+          "factor": 2.37
+        },
+        {
+          "src": "blog-1.jpg",
+          "naturalW": 700,
+          "renderedW": 337,
+          "factor": 2.08
+        },
+        {
+          "src": "blog-2.jpg",
+          "naturalW": 700,
+          "renderedW": 337,
+          "factor": 2.08
+        },
+        {
+          "src": "blog-3.jpg",
+          "naturalW": 700,
+          "renderedW": 337,
+          "factor": 2.08
+        },
+        {
+          "src": "blog-4.jpg",
+          "naturalW": 700,
+          "renderedW": 337,
+          "factor": 2.08
+        },
+        {
+          "src": "blog-5.jpg",
+          "naturalW": 700,
+          "renderedW": 337,
+          "factor": 2.08
+        },
+        {
+          "src": "blog-6.jpg",
+          "naturalW": 700,
+          "renderedW": 337,
+          "factor": 2.08
+        }
+      ],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "notes": []
+    },
+    "1728": {
+      "viewport": {
+        "name": "1728",
+        "width": 1728,
+        "height": 1117
+      },
+      "pageWidth": 1728,
+      "containerPx": 1273.53125,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 1273.5,
+          "ratio": 0.737,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 407.8,
+          "ratio": 0.3202,
+          "delta": 0.0002,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 25,
+          "ratio": 0.0196,
+          "delta": -0.0004,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 305.6,
+          "ratio": 0.24,
+          "delta": -0.001,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 17,
+          "ratio": 0.0133,
+          "delta": 0.0003,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 23,
+          "ratio": 0.0181,
+          "delta": 0.0001,
+          "status": "PASS"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 978,
+          "ratio": 0.566,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 133,
+          "ratio": 0.077,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 273,
+          "ratio": 0.158,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 297.2,
+          "ratio": 0.172,
+          "delta": 0,
+          "status": "PASS"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 1728,
+        "scrollW": 1728,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 0
+      },
+      "brokenImages": [],
+      "oversizedImages": [],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "notes": []
+    },
+    "1920": {
+      "viewport": {
+        "name": "1920",
+        "width": 1920,
+        "height": 1080
+      },
+      "pageWidth": 1920,
+      "containerPx": 1280,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 1280,
+          "ratio": 0.6667,
+          "delta": -0.0703,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 410,
+          "ratio": 0.3203,
+          "delta": 0.0003,
+          "status": "PASS"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 25,
+          "ratio": 0.0195,
+          "delta": -0.0005,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 307.3,
+          "ratio": 0.24,
+          "delta": -0.001,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 17,
+          "ratio": 0.0133,
+          "delta": 0.0003,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 23,
+          "ratio": 0.018,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 1040,
+          "ratio": 0.5417,
+          "delta": -0.0243,
+          "status": "PASS"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 140,
+          "ratio": 0.0729,
+          "delta": -0.0041,
+          "status": "PASS"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 285,
+          "ratio": 0.1484,
+          "delta": -0.0096,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.7,
+          "ratio": 0.678,
+          "delta": 0,
+          "status": "PASS"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": 320,
+          "ratio": 0.1667,
+          "delta": -0.0053,
+          "status": "PASS"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 4,
+        "blogCards": 6,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {
+        "--surface-dark": "#1e2833",
+        "--surface-deep": "#161d28",
+        "--surface-raised": "#2f3a48",
+        "--surface-light": "#ffffff",
+        "--gold": "#cfaf71",
+        "--gold-on-light": "#877249",
+        "--container-max": "1280px",
+        "--radius-surface": "0"
+      },
+      "radiusOffenderCount": 0,
+      "radiusOffenders": [],
+      "shadowOffenderCount": 0,
+      "shadowOffenders": [],
+      "contrastFailures": [],
+      "overflow": {
+        "docW": 1920,
+        "scrollW": 1920,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 0,
+        "missingAlt": 0,
+        "notLazy": 1,
+        "missingDims": 0,
+        "oversized": 0
+      },
+      "brokenImages": [],
+      "oversizedImages": [],
+      "icons": {
+        "fontAwesome": 0,
+        "svg": 33
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "failedRequests": [
+        {
+          "url": "http://localhost:5173/favicon.ico",
+          "type": "other",
+          "reason": "HTTP 404"
+        }
+      ],
+      "notes": []
+    }
+  }
+}

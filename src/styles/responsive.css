@@ -1,0 +1,266 @@
+/* =============================================================================
+   RESPONSIVE — spec §E, deviation J-11
+   =============================================================================
+   EVERYTHING IN THIS FILE IS INFERRED.
+
+   No screenshot exists below desktop width, so there is zero observed evidence
+   for any of it. Under decision B4 this is a permanent unknown, not a gap to be
+   filled by inference presented as fact. It is isolated in its own file so the
+   boundary between "reconstructed" and "invented" stays visible in the source.
+
+   Principle (spec §E.2): reproduce the desktop design language, infer only what
+   is necessary, and choose the least visually disruptive option at each step.
+
+   The Stage 0 baseline had no responsive CSS whatsoever — it held a fixed 920px
+   floor and overflowed by up to 545px at 375px wide.
+   ========================================================================== */
+
+/* -----------------------------------------------------------------------------
+   1024-1279 — grids hold, container goes fluid. Lowest-risk band.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .site-footer__grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+
+  /* The address column wraps to a second row rather than crushing the link
+     columns. */
+  .footer-col--contact {
+    grid-column: 1 / -1;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   768-1023 — 3-col becomes 2-col; the testimonial stagger is removed.
+   Removing the stagger is one of the two largest inferences (spec §E.2): it is
+   the section's defining visual device, but preserving a 4-up stagger at tablet
+   width would make the cards unreadably narrow.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .practice__grid,
+  .blog__grid,
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonials__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--stack-md);
+  }
+
+  /* Stagger removed: the transforms and the reversed flow are both undone, so
+     every badge sits below its card in normal order. */
+  .testimonial-col--raised,
+  .testimonial-col--lowered {
+    transform: none;
+    flex-direction: column;
+  }
+
+  .testimonial-col--raised .reviewer,
+  .testimonial-col--lowered .reviewer {
+    margin-top: var(--stack-sm);
+    margin-bottom: 0;
+  }
+
+  /* The history section's middle portrait is decorative; dropping it to a
+     two-column layout keeps the timeline and skills legible. */
+  .history__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .history__portrait {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+    max-height: 320px;
+  }
+
+  .intro__grid,
+  .cta__grid,
+  .blog__featured {
+    grid-template-columns: 1fr;
+  }
+
+  .practice__head {
+    grid-template-columns: 1fr;
+    gap: var(--stack-md);
+  }
+
+  /* The vertical hairline (correction M-5) only reads as a divider when the two
+     blocks sit side by side. Stacked, it becomes a horizontal rule. */
+  .practice__head-text {
+    border-left: none;
+    border-top: 1px solid var(--hairline);
+    padding-left: 0;
+    padding-top: var(--stack-md);
+  }
+
+  /* Header rows stack into a single row: the contact row is the least essential
+     content, so it is dropped rather than wrapped. Its information remains in
+     the footer and the CTA card. */
+  .site-header__row--2 .header-contact {
+    display: none;
+  }
+
+  .site-header__row--2 {
+    height: auto;
+    padding-block: 10px;
+  }
+
+  .attorneys__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--stack-sm);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   480-767 — single column throughout; the header collapses to a disclosure menu.
+   The disclosure menu is the other largest inference (spec §E.2). It is keyboard
+   operable and focus-trapped by the primitive that renders it.
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .practice__grid,
+  .blog__grid,
+  .stats-row,
+  .testimonials__grid,
+  .attorneys__grid,
+  .history__grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field--full {
+    grid-column: auto;
+  }
+
+  .history__portrait {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Nav collapses behind a toggle. */
+  .nav-toggle {
+    display: grid;
+  }
+
+  .main-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background-color: var(--surface-deep);
+    border-top: 1px solid var(--hairline-on-dark);
+    padding: var(--stack-sm) 20px var(--stack-md);
+  }
+
+  .main-nav[data-open="false"] {
+    display: none;
+  }
+
+  .main-nav__link {
+    padding-block: 12px;
+    border-bottom: 1px solid var(--hairline-on-dark);
+  }
+
+  /* The hero scrim strengthens, because at narrow widths the text column
+     overlaps the photograph's subject rather than sitting beside it (J-9). */
+  .hero__scrim {
+    background: linear-gradient(
+      175deg,
+      rgb(22 29 40 / 0.9) 0%,
+      rgb(22 29 40 / 0.82) 55%,
+      rgb(22 29 40 / 0.72) 100%
+    );
+  }
+
+  .hero {
+    height: auto;
+    min-height: 560px;
+    padding-bottom: var(--stack-xl);
+  }
+
+  /* Cart and the top-row button compete for space; the cart is the least
+     essential and its purpose is UNCERTAIN in the reference anyway (spec §K). */
+  .cart-link {
+    display: none;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-col--contact {
+    grid-column: auto;
+  }
+
+  /* The flanking footer rules have a fixed minimum (short rule + tick + long
+     rule), so two of them either side of the brand cannot fit a narrow line.
+     The brand centres alone rather than the ornament overflowing. */
+  .site-footer__brand {
+    justify-content: center;
+  }
+
+  .site-footer__brand .ornament--wide {
+    display: none;
+  }
+
+  /* "Book a Consultation" plus the brand exceeds the line at phone widths. The
+     button loses padding rather than the label being truncated. */
+  .site-header__row--1 .btn {
+    padding: 11px 16px;
+    font-size: 13px;
+  }
+
+  .site-brand {
+    font-size: 19px;
+    gap: 8px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .partners__head {
+    flex-direction: column;
+    gap: var(--stack-sm);
+  }
+
+  /* Flanking ornaments collapse to a single centred one when the heading wraps. */
+  .partners__head .ornament--flank-left {
+    display: none;
+  }
+
+  .site-footer__bottom {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .stat-box {
+    padding: 20px;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   < 480 — stat tiles stack; the two-sub-column footer list collapses.
+   -------------------------------------------------------------------------- */
+@media (max-width: 479px) {
+  .stat-tiles {
+    flex-direction: column;
+  }
+
+  .stat-tile {
+    min-width: 0;
+  }
+
+  .footer-col__links--split {
+    grid-template-columns: 1fr;
+  }
+
+  .collage {
+    gap: var(--stack-sm);
+  }
+
+  .attorney-card__social {
+    left: 6%;
+    right: 6%;
+  }
+}

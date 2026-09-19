@@ -1,0 +1,248 @@
+{
+  "note": "Substitute imagery, not confirmed Ojijo HR Law assets. origin: 'forensic' = inherited from the forensic reconstruction; 'replacement' = original photo ID is dead (404) and was swapped; 'new' = slot exists in the screenshots but not in the forensic markup.",
+  "generatedBy": "tools/fetch-assets.mjs",
+  "assets": [
+    {
+      "file": "/images/hero-background.jpg",
+      "role": "Hero section background (full-bleed, behind left gradient scrim)",
+      "width": 1920,
+      "height": 1200,
+      "bytes": 288272,
+      "origin": "replacement",
+      "sourceId": "photo-1541746972996-4e0b0f43e02a",
+      "replaces": "photo-1589829085413-56de8ae18c73",
+      "rationale": "the forensic ID is a yellow book-cover photo, wholly unlike the reference hero"
+    },
+    {
+      "file": "/images/stat-panel-background.jpg",
+      "role": "Dark stat box background (behind 90% opacity overlay)",
+      "width": 800,
+      "height": null,
+      "bytes": 37671,
+      "origin": "forensic",
+      "sourceId": "photo-1589391886645-d51941baf7fb"
+    },
+    {
+      "file": "/images/justice-statue.jpg",
+      "role": "History/skills section image — Lady Justice statue holding scales",
+      "width": 800,
+      "height": null,
+      "bytes": 43076,
+      "origin": "replacement",
+      "sourceId": "photo-1589994965851-a8f479c573a9",
+      "replaces": "photo-1618055535359-55cb8584852e",
+      "rationale": "original photo ID returns HTTP 404; this one matches the existing alt text"
+    },
+    {
+      "file": "/images/form-background.jpg",
+      "role": "Consultation form section background (behind dark overlay)",
+      "width": 1600,
+      "height": 1067,
+      "bytes": 282624,
+      "origin": "replacement",
+      "sourceId": "photo-1479142506502-19b3a3b7ff33",
+      "replaces": "photo-1505664177922-24155b93d6e4",
+      "rationale": "original photo ID returns HTTP 404; law-library shelf reads well under a dark overlay",
+      "derivedFrom": "form-background.jpg"
+    },
+    {
+      "file": "/images/attorney-1.jpg",
+      "role": "Attorney portrait 1",
+      "width": 600,
+      "height": 885,
+      "bytes": 77805,
+      "origin": "forensic",
+      "sourceId": "photo-1556157382-97eda2d62296"
+    },
+    {
+      "file": "/images/attorney-2.jpg",
+      "role": "Attorney portrait 2",
+      "width": 600,
+      "height": 885,
+      "bytes": 121651,
+      "origin": "forensic",
+      "sourceId": "photo-1573497019940-1c28c88b4f3e"
+    },
+    {
+      "file": "/images/attorney-3.jpg",
+      "role": "Attorney portrait 3",
+      "width": 600,
+      "height": 885,
+      "bytes": 59090,
+      "origin": "forensic",
+      "sourceId": "photo-1560250097-0b93528c311a"
+    },
+    {
+      "file": "/images/reviewer-1.jpg",
+      "role": "Testimonial avatar 1",
+      "width": 88,
+      "height": 88,
+      "bytes": 4096,
+      "origin": "forensic",
+      "sourceId": "photo-1573496359142-b8d87734a5a2",
+      "derivedFrom": "reviewer-1.jpg"
+    },
+    {
+      "file": "/images/reviewer-2.jpg",
+      "role": "Testimonial avatar 2",
+      "width": 88,
+      "height": 88,
+      "bytes": 3072,
+      "origin": "forensic",
+      "sourceId": "photo-1580489944761-15a19d654956",
+      "derivedFrom": "reviewer-2.jpg"
+    },
+    {
+      "file": "/images/reviewer-3.jpg",
+      "role": "Testimonial avatar 3",
+      "width": 88,
+      "height": 88,
+      "bytes": 3072,
+      "origin": "forensic",
+      "sourceId": "photo-1507003211169-0a1dd7228f2d",
+      "derivedFrom": "reviewer-3.jpg"
+    },
+    {
+      "file": "/images/reviewer-4.jpg",
+      "role": "Testimonial avatar 4",
+      "width": 88,
+      "height": 88,
+      "bytes": 4096,
+      "origin": "forensic",
+      "sourceId": "photo-1438761681033-6461ffad8d80",
+      "derivedFrom": "reviewer-4.jpg"
+    },
+    {
+      "file": "/images/blog-featured.jpg",
+      "role": "Featured blog post image",
+      "width": 1000,
+      "height": 640,
+      "bytes": 59963,
+      "origin": "forensic",
+      "sourceId": "photo-1589391886645-d51941baf7fb"
+    },
+    {
+      "file": "/images/blog-1.jpg",
+      "role": "Blog card 1 image",
+      "width": 700,
+      "height": 525,
+      "bytes": 102400,
+      "origin": "replacement",
+      "sourceId": "photo-1436450412740-6b988f486c6b",
+      "replaces": "photo-1505664177922-24155b93d6e4",
+      "rationale": "original photo ID returns HTTP 404; courthouse facade keeps the legal subject matter",
+      "derivedFrom": "blog-1.jpg"
+    },
+    {
+      "file": "/images/blog-2.jpg",
+      "role": "Blog card 2 image",
+      "width": 700,
+      "height": 525,
+      "bytes": 48128,
+      "origin": "forensic",
+      "sourceId": "photo-1450101499163-c8848c66ca85",
+      "derivedFrom": "blog-2.jpg"
+    },
+    {
+      "file": "/images/blog-3.jpg",
+      "role": "Blog card 3 image",
+      "width": 700,
+      "height": 525,
+      "bytes": 45056,
+      "origin": "forensic",
+      "sourceId": "photo-1521791055366-0d553872125f",
+      "derivedFrom": "blog-3.jpg"
+    },
+    {
+      "file": "/images/history-backdrop.jpg",
+      "role": "History section full-bleed blurred backdrop (correction H-6)",
+      "width": 1200,
+      "height": 700,
+      "bytes": 44654,
+      "origin": "forensic",
+      "sourceId": "photo-1479142506502-19b3a3b7ff33",
+      "rationale": "pre-blurred server-side so no runtime filter is needed on a full-bleed layer"
+    },
+    {
+      "file": "/images/prefooter-band.jpg",
+      "role": "Pre-footer full-bleed image band (correction H-1)",
+      "width": 1920,
+      "height": 600,
+      "bytes": 252556,
+      "origin": "new",
+      "sourceId": "photo-1436450412740-6b988f486c6b",
+      "rationale": "section exists in the screenshots but had no counterpart in the forensic markup; the reference band shows classical architecture"
+    },
+    {
+      "file": "/images/intro-primary.jpg",
+      "role": "derived variant",
+      "width": 550,
+      "height": 733,
+      "bytes": 104448,
+      "origin": "derived",
+      "derivedFrom": "blog-1.jpg",
+      "rationale": "sized to its rendered box; see tools/derive-assets.mjs"
+    },
+    {
+      "file": "/images/intro-secondary.jpg",
+      "role": "derived variant",
+      "width": 550,
+      "height": 733,
+      "bytes": 83968,
+      "origin": "derived",
+      "derivedFrom": "form-background.jpg",
+      "rationale": "sized to its rendered box; see tools/derive-assets.mjs"
+    },
+    {
+      "file": "/images/intro-wide.jpg",
+      "role": "derived variant",
+      "width": 800,
+      "height": 450,
+      "bytes": 47104,
+      "origin": "derived",
+      "derivedFrom": "blog-featured.jpg",
+      "rationale": "sized to its rendered box; see tools/derive-assets.mjs"
+    },
+    {
+      "file": "/images/history-portrait.jpg",
+      "role": "derived variant",
+      "width": 590,
+      "height": 787,
+      "bytes": 67584,
+      "origin": "derived",
+      "derivedFrom": "justice-statue.jpg",
+      "rationale": "sized to its rendered box; see tools/derive-assets.mjs"
+    },
+    {
+      "file": "/images/blog-4.jpg",
+      "role": "derived variant",
+      "width": 700,
+      "height": 525,
+      "bytes": 51200,
+      "origin": "derived",
+      "derivedFrom": "justice-statue.jpg",
+      "rationale": "sized to its rendered box; see tools/derive-assets.mjs"
+    },
+    {
+      "file": "/images/blog-5.jpg",
+      "role": "derived variant",
+      "width": 700,
+      "height": 525,
+      "bytes": 84992,
+      "origin": "derived",
+      "derivedFrom": "attorney-2.jpg",
+      "rationale": "sized to its rendered box; see tools/derive-assets.mjs"
+    },
+    {
+      "file": "/images/blog-6.jpg",
+      "role": "derived variant",
+      "width": 700,
+      "height": 525,
+      "bytes": 67584,
+      "origin": "derived",
+      "derivedFrom": "hero-background.jpg",
+      "rationale": "sized to its rendered box; see tools/derive-assets.mjs"
+    }
+  ],
+  "derivedBy": "tools/derive-assets.mjs"
+}

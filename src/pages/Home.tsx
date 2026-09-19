@@ -1,3 +1,13 @@
+/* -----------------------------------------------------------------------------
+ * Home page — the confirmed section order from spec §B.
+ *
+ * Section ordering is the one dimension the forensic reconstruction got right
+ * end to end, and is the port's genuine value. Preserve it exactly.
+ *
+ * Section 12 (PreFooterBand) is the exception: it is present in the screenshots
+ * and was missing from the forensic reconstruction entirely (correction H-1).
+ * -------------------------------------------------------------------------- */
+
 import Hero from "@/components/Hero";
 import IntroSection from "@/components/IntroSection";
 import PracticeAreas from "@/components/PracticeAreas";
@@ -8,12 +18,12 @@ import Attorneys from "@/components/Attorneys";
 import ConsultationCTA from "@/components/ConsultationCTA";
 import ConsultationForm from "@/components/ConsultationForm";
 import BlogSection from "@/components/BlogSection";
+import PreFooterBand from "@/components/PreFooterBand";
+import { useReveal } from "@/hooks/useReveal";
 
-/* Section order is the forensic reconstruction's strongest contribution and is
-   CONFIRMED by the screenshots end to end. Preserve it.
-   H-1: the pre-footer full-bleed image band (section 12 of 13) is absent from the
-   baseline entirely and is added in Stage 2. */
 export default function Home() {
+  useReveal();
+
   return (
     <>
       <Hero />
@@ -26,6 +36,7 @@ export default function Home() {
       <ConsultationCTA />
       <ConsultationForm />
       <BlogSection />
+      <PreFooterBand />
     </>
   );
 }

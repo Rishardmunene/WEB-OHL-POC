@@ -1,0 +1,1339 @@
+/* =============================================================================
+   SECTIONS — component styles, Stages 3-6
+   =============================================================================
+   Correction ids (C-n, H-n, M-n, L-n) refer to
+   STEERING/CURRENT_IMPLEMENTATION_GAP_ANALYSIS.md.
+   Deviation ids (J-n) refer to CONSOLIDATED_UI_SPEC.md §J.
+
+   Every surface here is square (--radius-surface: 0) and shadowless
+   (--shadow-0: none) unless it is a circle. Hierarchy comes from fill-tone
+   difference and hairlines, which is how the reference does it.
+   ========================================================================== */
+
+/* =============================================================================
+   1. HEADER — spec §B row 1, corrections M-1, M-2, L-1; refinement J-2
+   =============================================================================
+   Row 1: logo | Cart (0) + "Book a Consultation"
+   Row 2: main nav | two gold-ring contact items
+   Transparent at rest, overlaying the hero. OBSERVED.
+   ========================================================================== */
+
+.site-header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: var(--z-header);
+
+  /* Correction M-1: the forensic version was rgba(27,30,37,.95) + blur(10px) +
+     a 3px gold top border at rest. The reference has none of that — it is fully
+     transparent over the hero. */
+  background-color: transparent;
+
+  /* J-2 (refinement): scroll treatment interpolated continuously from
+     --scroll-progress (0..1), set by one passive rAF-throttled listener. Not an
+     abrupt state swap, per MASTER PROMPT §13 Stage 3. */
+  --scroll-progress: 0;
+  background-color: rgb(30 40 51 / calc(var(--scroll-progress) * 0.92));
+
+  /* Blur is bounded and confined to the navigation only (spec §G). The
+     reference has no blur anywhere, so this is pure refinement. */
+  backdrop-filter: blur(calc(var(--scroll-progress) * 12px));
+  transition:
+    background-color var(--motion-normal) var(--ease-standard),
+    backdrop-filter var(--motion-normal) var(--ease-standard);
+}
+
+/* Hairline appears only once scrolled — it is part of J-2, not of the rest state. */
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--hairline-on-dark);
+  opacity: var(--scroll-progress);
+}
+
+.site-header__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--stack-lg);
+}
+
+/* Row heights are OBSERVED: 0.077 and 0.158 (total) x page width. The slight
+   compression on scroll is J-2. */
+.site-header__row--1 {
+  height: calc(var(--h-header-row-1) * (1 - var(--scroll-progress) * 0.18));
+}
+
+.site-header__row--2 {
+  height: calc(var(--h-header-row-2) * (1 - var(--scroll-progress) * 0.22));
+}
+
+/* Hairline between the two rows — OBSERVED, spec §C.5 hairline 1 of 7. */
+.site-header__row--1 {
+  border-bottom: 1px solid var(--hairline-on-dark);
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 1.62vw, 28px);
+  font-weight: var(--fw-bold);
+  color: var(--text-on-dark);
+  white-space: nowrap;
+}
+
+.site-brand__mark {
+  color: var(--gold);
+  flex: none;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 1.7vw, 30px);
+}
+
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.cart-link svg {
+  color: var(--gold);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2vw, 35px);
+  font-size: 15px;
+}
+
+.main-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding-block: 6px;
+}
+
+/* Correction L-1: the forensic version painted the active link gold. In the
+   reference "Home" reads white, identical to its siblings. Hover stays gold as
+   a minimal refinement — no hover state is observable for nav links. */
+.main-nav__link:hover {
+  color: var(--gold);
+}
+
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.3vw, 40px);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+/* Correction M-2: ring is GOLD (the forensic used rgba(255,255,255,.1)). */
+.contact-item__icon {
+  width: clamp(34px, 2.3vw, 40px);
+  aspect-ratio: 1;
+  border-radius: var(--radius-circle);
+  border: 1px solid var(--gold);
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  flex: none;
+}
+
+/* Correction M-2: label is GOLD (the forensic used muted grey). */
+.contact-item__label {
+  display: block;
+  color: var(--gold);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.contact-item__value {
+  font-size: 15px;
+  font-weight: var(--fw-medium);
+}
+
+/* Mobile disclosure — J-11, entirely inferred; no sub-desktop evidence exists. */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  color: var(--text-on-dark);
+}
+
+/* =============================================================================
+   2. HERO — spec §B row 2, corrections H-2, M-11; refinement J-9
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  height: var(--h-hero); /* OBSERVED 0.566 x page width */
+  display: flex;
+  align-items: center;
+  /* Clears the fixed two-row header, which overlays the hero. */
+  padding-top: calc(var(--h-header-row-1) + var(--h-header-row-2));
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* Left gradient scrim. The forensic prose claimed a 50/50 split but its CSS was
+   right — a full-bleed photo with a left scrim. Strengthened per J-9 so the
+   composited text region clears 4.5:1. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    rgb(22 29 40 / 0.96) 0%,
+    rgb(22 29 40 / 0.9) 34%,
+    rgb(22 29 40 / 0.45) 58%,
+    rgb(22 29 40 / 0.12) 78%,
+    rgb(22 29 40 / 0.05) 100%
+  );
+}
+
+/* Correction M-13: the column must be wide enough to set the H1 on TWO lines.
+   "Deeper Understanding" measures 0.288 x page width in the reference (216px of a
+   744px capture => ~498px at 1728). The previous 46ch cap resolved against the
+   16px body size, giving ~368px, which forced a third line.
+
+   Bounded on both sides on purpose. A bare 41vw gives the 708px the reference
+   needs at 1728, but collapses to 160px at 390 and shreds the lead paragraph into
+   three-word lines, so the floor holds it at 420px and `100%` lets narrow
+   viewports simply use the container. */
+.hero__content {
+  max-width: min(100%, max(420px, 41vw));
+}
+
+/* Correction M-11: 58-61px in the reference; the forensic used 65px. */
+.hero__title {
+  font-size: var(--fs-hero);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--stack-sm);
+  /* The line break is authored, so balancing must not redistribute it. */
+  text-wrap: normal;
+}
+
+/* Correction M-14: the hero lead is a warm tan, not the cool grey used for muted
+   body copy elsewhere. Sampled glyph cores across 30 rows top out at #B69D74
+   with nothing brighter, so the colour is genuinely warm rather than white text
+   picking up the photograph behind it. */
+.hero__lead {
+  color: var(--text-lead-warm);
+  margin-bottom: var(--stack-lg);
+  max-width: 44ch;
+}
+
+/* The hero occurrence offsets the cross to roughly 22% rather than centring. */
+.hero .ornament {
+  --orn-cross-x: 22%;
+}
+
+/* Correction H-2: the forensic floated the two stat tiles out of the hero with
+   `position:absolute; bottom:-50px; right:20%`. In the reference they sit in the
+   INTRO section in normal flow. See .stat-tile below. */
+
+/* =============================================================================
+   3. INTRO — corrections H-11 (collage), H-2 (stat tiles), M-10 (script), C-6
+   ========================================================================== */
+
+.intro__grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(32px, 3.5vw, 60px);
+  align-items: center;
+}
+
+/* Correction H-11: three-image collage — two above, one wide below. The forensic
+   rendered a single image. Correction C-6 removes its 40px corner radius. */
+.collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-grid-3);
+}
+
+.collage__item {
+  border-radius: var(--radius-surface);
+  overflow: hidden;
+}
+
+.collage__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collage__item--tall {
+  aspect-ratio: 3 / 4;
+}
+
+.collage__item--wide {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+.intro__body {
+  color: var(--fg-muted);
+  margin-bottom: var(--stack-lg);
+}
+
+.signature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: var(--stack-lg);
+}
+
+.signature img {
+  width: 54px;
+  aspect-ratio: 1;
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+  flex: none;
+}
+
+/* Correction M-10: the reference signature is a calligraphic script face, which
+   the forensic report missed entirely and set in Playfair Display. */
+.signature__name {
+  font-family: var(--font-script);
+  font-size: 26px;
+  font-weight: var(--fw-body);
+  line-height: 1.1;
+}
+
+/* Correction H-2: stat tiles live here, in normal flow.
+   Correction C-3: the forensic gave these `0 10px 30px rgba(0,0,0,.3)`; no
+   shadow is detectable on any surface in the reference. */
+.stat-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-grid-3);
+}
+
+.stat-tile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 28px;
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-0);
+  min-width: 232px;
+}
+
+.stat-tile--dark {
+  background-color: var(--surface-raised);
+}
+
+.stat-tile--dark .stat-tile__icon {
+  color: var(--gold);
+}
+
+.stat-tile--gold {
+  background-color: var(--gold);
+  color: var(--surface-dark);
+}
+
+/* The gold tile puts its number inside a dark square badge — OBSERVED. */
+.stat-tile__badge {
+  display: grid;
+  place-items: center;
+  padding: 8px 12px;
+  background-color: var(--surface-dark);
+  color: var(--text-on-dark);
+  font-size: 20px;
+  font-weight: var(--fw-semibold);
+  border-radius: var(--radius-surface);
+  flex: none;
+}
+
+.stat-tile__value {
+  font-size: 22px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.1;
+}
+
+.stat-tile__label {
+  font-size: var(--fs-small);
+  line-height: 1.35;
+}
+
+.stat-tile--dark .stat-tile__label {
+  color: var(--fg-muted);
+}
+
+/* Dark text on gold is 7.13:1. White on gold is 2.10:1 and is forbidden (J-5). */
+.stat-tile--gold .stat-tile__label {
+  color: rgb(30 40 51 / 0.82);
+}
+
+/* =============================================================================
+   4. PRACTICE AREAS — corrections M-3, M-4, M-5, H-13, H-14, H-15
+   ========================================================================== */
+
+.practice__head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(28px, 3.2vw, 56px);
+  align-items: start;
+  margin-bottom: var(--stack-xl);
+}
+
+/* Correction M-5: a VERTICAL hairline divides heading from paragraph. This is
+   hairline 2 of 7 in spec §C.5 and the only vertical one — the forensic report
+   modelled no vertical rules at all. */
+.practice__head-text {
+  border-left: 1px solid var(--hairline);
+  padding-left: clamp(28px, 3.2vw, 56px);
+  color: var(--fg-muted);
+  max-width: 54ch;
+}
+
+/* Correction M-5: gold-highlighted phrases inside the paragraph — OBSERVED,
+   and absent from the forensic report. */
+.gold-phrase {
+  color: var(--accent);
+}
+
+/* Correction M-3: 0.020 x container = 25px. The forensic used 30px, ~20% wide. */
+.practice__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-grid-3);
+}
+
+/* Practice card fill is the PRIMARY tone on the DEEP section tone, which gives
+   deliberately near-invisible contrast. Spec §C.7: this is the design, not a
+   defect — do not "fix" it. */
+.practice-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-card-dark);
+  padding: clamp(28px, 2.4vw, 42px) clamp(24px, 2vw, 34px);
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-0);
+  transition: transform var(--motion-normal) var(--ease-standard);
+}
+
+/* Correction H-15 + refinement J-3. The one hovered card in the evidence (Car
+   Accident) shows NO lift, NO shadow change and NO gold bottom border. The gold
+   border is removed outright. The small lift is retained only as J-3, which is
+   the weakest-justified entry in the register because it contradicts a direct
+   observation rather than filling a void. */
+.practice-card:hover {
+  transform: translateY(-4px);
+}
+
+.practice-card__title {
+  font-size: var(--fs-h3);
+  margin-bottom: 12px;
+}
+
+.practice-card__body {
+  color: var(--fg-muted);
+  font-size: 15px;
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--stack-md);
+  flex: 1;
+}
+
+/* Correction M-4: a hairline rule sits above the card footer row.
+   Hairline 3 of 7. */
+.practice-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--stack-sm);
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--stack-md);
+}
+
+/* Correction H-14: thin-stroke LINE icons, not FontAwesome solid glyphs. */
+.practice-card__icon {
+  color: var(--accent);
+  flex: none;
+}
+
+/* =============================================================================
+   5. HELP / STATS / PARTNERS — corrections H-10, L-2, C-3, M-7
+   ========================================================================== */
+
+.help__head {
+  max-width: 60ch;
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: var(--stack-xl);
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-grid-3);
+}
+
+/* Hairline below the stats row — hairline 4 of 7. */
+.stats-row-wrap {
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: var(--stack-xl);
+  margin-bottom: var(--stack-xl);
+}
+
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 28px;
+  border-radius: var(--radius-surface);
+  /* Correction C-3: the forensic used `0 5px 20px rgba(0,0,0,.03)`. */
+  box-shadow: var(--shadow-0);
+}
+
+/* #FCFBFC on #FFFFFF — barely distinguishable, which is what the reference does. */
+.stat-box--light {
+  background-color: var(--surface-light-card);
+  /* Whether the reference carries a hairline border here is UNCERTAIN (spec §K),
+     so none is drawn. */
+}
+
+/* Correction H-10: the number sits INSIDE a gold ring badge with a small gold
+   icon above it. The forensic put a large icon beside a bare number. */
+.stat-box__ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: clamp(72px, 5.2vw, 90px);
+  aspect-ratio: 1;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-circle);
+  flex: none;
+}
+
+.stat-box__ring-icon {
+  color: var(--accent);
+}
+
+.stat-box__value {
+  font-size: clamp(18px, 1.27vw, 22px);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+}
+
+/* Correction H-10: the label is SERIF, with a small muted line beneath it. */
+.stat-box__label {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+}
+
+.stat-box__note {
+  color: var(--fg-muted);
+  font-size: var(--fs-xs);
+  margin-top: 4px;
+}
+
+/* Third box: dark, photographic background, no icon, and correction L-2
+   left-aligns the text where the forensic centred it.
+   This box also carried the Stage 0 accessibility defect: the forensic gave
+   every box `background:#fff` while text colour inherited white from the body,
+   so boxes 1 and 2 rendered white-on-white at 1.05:1. Fixed by the
+   .on-light / .on-dark surface contexts rather than per-element colours. */
+.stat-box--photo {
+  position: relative;
+  background-color: var(--surface-dark);
+  color: var(--text-on-dark);
+  text-align: left;
+  align-items: flex-end;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 132px;
+}
+
+.stat-box--photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.stat-box--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Text over photography must clear 4.5:1 on the composited result (J-9). */
+  background: linear-gradient(90deg, rgb(22 29 40 / 0.92) 0%, rgb(22 29 40 / 0.62) 100%);
+}
+
+.stat-box--photo .stat-box__value {
+  font-size: var(--fs-stat);
+}
+
+.stat-box--photo .stat-box__label {
+  color: var(--text-on-dark);
+  white-space: pre-line;
+}
+
+/* Partners. Correction M-7: ornaments flank "Meet The Partners" on BOTH sides;
+   the forensic placed a single separator below it. */
+.partners__head {
+  display: flex;
+  align-items: center;
+  gap: var(--stack-md);
+  margin-bottom: var(--stack-lg);
+}
+
+.partners__title {
+  font-size: var(--fs-h3);
+  white-space: nowrap;
+}
+
+.partner-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(24px, 3.5vw, 60px);
+  flex-wrap: wrap;
+}
+
+/* Partner logotypes are exempt from contrast requirements (spec §H.6). */
+.partner-logos li {
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 1.27vw, 22px);
+  font-weight: var(--fw-semibold);
+  color: var(--fg-muted);
+  opacity: 0.75;
+}
+
+/* =============================================================================
+   6. HISTORY & SKILLS — corrections H-6, H-7, M-8
+   =============================================================================
+   Breaks the container: full-bleed pre-blurred photograph with a translucent
+   panel at container width on top.
+   ========================================================================== */
+
+.history {
+  position: relative;
+  padding-block: var(--section-pad-y);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Correction H-6: the forensic had no backdrop at all.
+   Per spec §G this is a PRE-BLURRED asset, not a runtime filter:blur() on a
+   large layer, which would cost a full-size GPU blur on every paint. */
+.history__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.history__backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.history::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: rgb(22 29 40 / 0.55);
+}
+
+/* Correction H-6: translucent panel at container width. */
+.history__panel {
+  background-color: var(--panel-scrim);
+  padding: clamp(32px, 3.5vw, 60px);
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-0);
+}
+
+.history__grid {
+  display: grid;
+  grid-template-columns: 1fr 0.78fr 1fr;
+  gap: clamp(28px, 2.9vw, 50px);
+  align-items: start;
+}
+
+.history__portrait {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-surface);
+  overflow: hidden;
+}
+
+.history__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Correction H-7: no connector line, no markers, flush left. The forensic added
+   a 2px left border, gold ::before dots and a 20px inset — none of which the
+   reference has. */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-md);
+}
+
+.timeline__year {
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-size: var(--fs-h4);
+  margin-bottom: 6px;
+}
+
+.timeline__body {
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-block: var(--stack-lg);
+}
+
+.skill__header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--stack-sm);
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.skill__track {
+  position: relative;
+  height: 2px;
+  background-color: var(--hairline);
+}
+
+.skill__fill {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  background-color: var(--accent);
+  /* Refinement: animates on entry via transform only (scaleX), so the bar does
+     not trigger layout. Width is set once from the data value. */
+  transform-origin: left center;
+  transform: scaleX(var(--skill-scale, 1));
+  transition: transform var(--motion-slow) var(--ease-standard);
+}
+
+/* Correction M-8: a gold circular knob at the fill terminus, which the forensic
+   omitted. Positioned by `left`, but it is never animated, so no layout cost. */
+.skill__knob {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  aspect-ratio: 1;
+  background-color: var(--accent);
+  border-radius: var(--radius-circle);
+  transform: translate(-50%, -50%);
+}
+
+/* =============================================================================
+   7. TESTIMONIALS — correction H-3, the largest structural error in the port
+   =============================================================================
+   FOUR cards in a staggered 4-column grid, not two in a 1fr 1fr grid. Reviewer
+   blocks float OUTSIDE the cards, overlapping them.
+
+   Note: spec §C.7 says badges sit "above the raised ones, below the lowered
+   ones". The screenshots show the opposite — badges sit BELOW the raised cards
+   (1, 3) and ABOVE the lowered cards (2, 4), which is what interlocks them.
+   Screenshot evidence outranks the spec prose (spec §A rank 2), so the
+   screenshots are followed here.
+   ========================================================================== */
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-grid-4); /* 0.013 x container = 17px; forensic used 40px */
+  align-items: start;
+  margin-top: var(--stack-xl);
+}
+
+.testimonial-col {
+  display: flex;
+  flex-direction: column;
+  --stagger: clamp(24px, 2.7vw, 46px);
+}
+
+/* Raised columns: card sits high, badge hangs below and overlaps it. */
+.testimonial-col--raised {
+  transform: translateY(calc(var(--stagger) * -1));
+}
+
+/* Lowered columns: badge sits above and overlaps the card. */
+.testimonial-col--lowered {
+  transform: translateY(var(--stagger));
+  flex-direction: column-reverse;
+}
+
+.testimonial-card {
+  position: relative;
+  background-color: var(--surface-raised);
+  padding: clamp(24px, 2.1vw, 34px);
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-0);
+}
+
+.testimonial-card__quote-mark {
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-size: 44px;
+  line-height: 0.7;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.testimonial-card__quote {
+  font-size: var(--fs-small);
+  line-height: var(--lh-relaxed);
+  color: var(--fg);
+}
+
+/* The badge overlaps the card rather than sitting in a bordered footer. */
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-inline: 4px;
+}
+
+.testimonial-col--raised .reviewer {
+  margin-top: calc(var(--stagger) * -0.45);
+}
+
+.testimonial-col--lowered .reviewer {
+  margin-bottom: calc(var(--stagger) * -0.45);
+}
+
+.reviewer img {
+  width: 44px;
+  aspect-ratio: 1;
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+  flex: none;
+}
+
+.reviewer__name {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h4);
+  line-height: 1.2;
+}
+
+.reviewer__role {
+  font-size: var(--fs-xs);
+  color: var(--fg-muted);
+}
+
+/* =============================================================================
+   8. ATTORNEYS — corrections H-8, H-9, M-3
+   ========================================================================== */
+
+.attorneys__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-attorneys); /* 0.018 x container = 23px; forensic used 40px */
+  margin-top: var(--stack-xl);
+}
+
+.attorney-card {
+  text-align: center;
+}
+
+/* Correction H-9: aspect 0.678 (w:h). The forensic pinned height to 350px,
+   which is far too short and distorts the crop at every viewport. */
+.attorney-card__media {
+  position: relative;
+  aspect-ratio: var(--aspect-attorney);
+  margin-bottom: var(--stack-md);
+}
+
+.attorney-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-surface);
+}
+
+/* Correction H-8: a WHITE bar, inset from the photo's edges, overlapping the
+   image bottom, holding FOUR social icons and finished with a thin gold
+   underline. The forensic put three dark icons below the name with no bar. */
+.attorney-card__social {
+  position: absolute;
+  bottom: 0;
+  left: 12%;
+  right: 12%;
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 0.9vw, 14px);
+  padding: 10px 8px;
+  background-color: var(--surface-light);
+  border-bottom: 2px solid var(--gold);
+  border-radius: var(--radius-surface);
+}
+
+.attorney-card__social a {
+  display: grid;
+  place-items: center;
+  color: var(--text-on-light);
+  width: 24px;
+  height: 24px;
+}
+
+.attorney-card__social a:hover {
+  color: var(--gold-on-light);
+}
+
+.attorney-card__name {
+  font-size: var(--fs-h4);
+  margin-bottom: 4px;
+}
+
+/* Role is gold. On this white section that must be --gold-on-light: the
+   observed #CFAF71 measures 2.10:1 here and fails AA at every size (J-5). */
+.attorney-card__role {
+  color: var(--accent);
+  font-size: var(--fs-xs);
+}
+
+.attorneys__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--stack-lg);
+}
+
+/* =============================================================================
+   9. CONSULTATION CTA — correction H-16
+   ========================================================================== */
+
+.cta__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(32px, 3.5vw, 60px);
+  align-items: center;
+}
+
+.cta__title {
+  font-size: clamp(24px, 2.08vw, 36px);
+  line-height: 1.3;
+  margin-bottom: var(--stack-sm);
+}
+
+.cta__body {
+  color: var(--fg-muted);
+  margin-bottom: var(--stack-lg);
+  max-width: 46ch;
+}
+
+/* Correction H-16: white card with an INSET GREY FRAME, giving a double-frame
+   effect. The forensic rendered a plain white box. */
+.consult-card {
+  background-color: var(--surface-light);
+  padding: 14px;
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-0);
+}
+
+.consult-card__inner {
+  border: 1px solid #d8d8d8;
+  padding: clamp(24px, 2.4vw, 40px);
+}
+
+.consult-card__title {
+  font-size: var(--fs-h3);
+  margin-bottom: 12px;
+}
+
+.consult-card__body {
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+  margin-bottom: var(--stack-md);
+}
+
+.consult-card__phone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Correction H-16 + J-5: a SOLID GOLD SQUARE tile, not a circular tinted one,
+   and the glyph must be DARK. A white glyph on gold is 2.10:1 and fails AA. */
+.consult-card__tile {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  aspect-ratio: 1;
+  background-color: var(--gold);
+  color: var(--surface-dark);
+  border-radius: var(--radius-surface);
+  flex: none;
+}
+
+.consult-card__label {
+  display: block;
+  color: var(--accent);
+  font-size: var(--fs-xs);
+}
+
+.consult-card__number {
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  font-family: var(--font-sans);
+}
+
+/* =============================================================================
+   10. CONTACT FORM — corrections H-12, M-9; refinement J-8
+   ========================================================================== */
+
+.form-section {
+  position: relative;
+  padding-block: var(--section-pad-y);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.form-section__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.form-section__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Correction M-9, revised. The forensic used rgba(27,30,37,.85), which buries the
+   photograph. Measuring the reference settles it: the photo margin outside the
+   panel has mean luminance 37.7, and the source photograph's own mean is 38.7,
+   so the backdrop is essentially UNDARKENED and there is no overlay at all. No
+   text sits on the bare photo, so nothing depends on one. Removed outright.
+
+   (An earlier pass here used 0.34, which measured 26.3 against the reference's
+   37.7 — visibly too dark.) */
+
+/* Correction H-12 + M-15: the panel is CONTAINER WIDTH, container-aligned, and
+   fully OPAQUE. The forensic capped it at 900px, centred it, and added a heavy
+   drop shadow. The reference panel interior is 78,695 pixels of exactly #1E2833
+   with zero bleed-through from the photograph behind it, so the earlier 0.93
+   alpha was wrong. */
+.form-panel {
+  background-color: var(--surface-dark);
+  padding: clamp(32px, 3.5vw, 60px);
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-0);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 2.1vw, 34px);
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+/* J-8: real labels, not placeholders. Placeholder-as-label fails WCAG 3.3.2
+   regardless of contrast, so each field has a visible label. */
+.field label {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--fg-muted);
+  margin-bottom: 6px;
+}
+
+.field .required {
+  color: var(--accent);
+}
+
+/* J-8: the boundary must reach 3:1 against the panel (WCAG 1.4.11). The
+   reference's ~0.05-alpha underline is far below that, so this is visibly
+   stronger than the reference. */
+.field input,
+.field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--field-border);
+  padding: 10px 0;
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  border-radius: var(--radius-surface);
+  transition: border-color var(--motion-fast) var(--ease-standard);
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-bottom-color: var(--fg-muted);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+/* The underline is the control boundary, so the focus ring is drawn on the
+   wrapper to stay visible without doubling up on the border. */
+.field:focus-within label {
+  color: var(--accent);
+}
+
+.field textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+.form-panel__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--stack-lg);
+}
+
+/* =============================================================================
+   11. BLOG — corrections H-4, H-5, L-3
+   ========================================================================== */
+
+/* Correction H-5: NO card surface anywhere in this section. The forensic gave
+   both the featured post and every card `background: var(--bg-card)`. The
+   reference shows the section background inside every card. */
+.blog__featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 3.2vw, 56px);
+  align-items: center;
+  margin-top: var(--stack-xl);
+  padding-bottom: var(--stack-xl);
+  /* Hairline below the featured post — hairline 6 of 7. */
+  border-bottom: 1px solid var(--hairline);
+}
+
+.blog__featured-media {
+  aspect-ratio: 3 / 2;
+}
+
+.blog__featured-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-surface);
+}
+
+/* Correction H-4: SIX cards in 3 x 2. The forensic rendered three. */
+.blog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 2.6vw, 44px) var(--gap-grid-3);
+  margin-top: var(--stack-xl);
+}
+
+.blog-card__media {
+  aspect-ratio: 4 / 3;
+  margin-bottom: var(--stack-sm);
+}
+
+.blog-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-surface);
+}
+
+.blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-xs);
+  color: var(--fg-muted);
+  margin-bottom: 10px;
+}
+
+.blog-meta__category {
+  color: var(--accent);
+}
+
+.blog-card__title {
+  font-size: var(--fs-h4);
+  margin-bottom: 10px;
+}
+
+.blog__featured-title {
+  font-size: clamp(22px, 1.85vw, 32px);
+  margin-bottom: 12px;
+}
+
+.blog-card__excerpt {
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+  margin-bottom: var(--stack-sm);
+}
+
+/* Correction L-3: "Read More" is underlined in the reference. Casing is not
+   legible at screenshot resolution, so the forensic's uppercase + letterspacing
+   is dropped in favour of sentence case; the casing remains an inference. */
+.read-more {
+  color: var(--accent);
+  font-size: var(--fs-xs);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* =============================================================================
+   12. PRE-FOOTER IMAGE BAND — correction H-1
+   =============================================================================
+   Absent entirely from the forensic reconstruction. Full-bleed, height 0.172 x
+   page width, purely decorative so its alt text is empty.
+   ========================================================================== */
+
+.prefooter-band {
+  height: var(--h-prefooter);
+  overflow: hidden;
+}
+
+.prefooter-band img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =============================================================================
+   13. FOOTER — correction H-17
+   ========================================================================== */
+
+/* Correction H-17: #1E2833, the SAME tone as the other dark sections. The
+   forensic darkened it to #16181d, inventing a hierarchy the reference lacks. */
+.site-footer {
+  background-color: var(--surface-dark);
+  padding-block: var(--stack-xl) var(--stack-md);
+}
+
+/* Correction H-17: the logo is flanked by long double-hairline gold rules
+   ending in the four-point star. The forensic centred a plain logo. */
+.site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--stack-md);
+  margin-bottom: var(--stack-xl);
+}
+
+.site-footer__brand .site-brand {
+  font-size: clamp(24px, 2.08vw, 36px);
+  flex: none;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  gap: clamp(24px, 2.6vw, 44px);
+  margin-bottom: var(--stack-xl);
+}
+
+/* Hairline under each column heading — hairline 5 of 7. */
+.footer-col__heading {
+  font-size: var(--fs-h4);
+  padding-bottom: 12px;
+  margin-bottom: var(--stack-md);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.footer-col__links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Correction H-17: the first column holds TWO sub-columns. The forensic used a
+   single six-link column. */
+.footer-col__links--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px var(--stack-md);
+}
+
+.footer-col a {
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-col address {
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+  line-height: var(--lh-relaxed);
+  white-space: pre-line;
+}
+
+.site-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--stack-md);
+  flex-wrap: wrap;
+  padding-top: var(--stack-md);
+  border-top: 1px solid var(--hairline);
+  color: var(--fg-muted);
+  font-size: var(--fs-xs);
+}
+
+.site-footer__social {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.site-footer__social a {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.site-footer__social a:hover {
+  color: var(--accent);
+}

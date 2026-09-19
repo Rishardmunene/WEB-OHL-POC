@@ -1,64 +1,80 @@
-import { contactDetails, footerColumns } from "@/content/home";
+/* -----------------------------------------------------------------------------
+ * Footer — spec §B section 13. Correction H-17.
+ *
+ * OBSERVED: surface #1E2833, the SAME tone as the other dark sections. The logo
+ * is centred and flanked by long double-hairline gold rules ending in the
+ * four-point star. Four columns with hairline-ruled serif headings, and the FIRST
+ * column holds two sub-columns.
+ *
+ * The forensic reconstruction darkened the surface to #16181d (inventing a
+ * hierarchy the reference does not have), centred a plain logo with no flanking
+ * rules, and used a single six-link column.
+ * -------------------------------------------------------------------------- */
 
-/* H-17: evidence shows background #1E2833 (identical to the sections, not darker),
-   the logo flanked by long double-hairline gold rules ending in a four-point star,
-   hairline rules under each column heading, and the first column split into TWO
-   sub-columns. Corrected in Stage 6. */
+import { Landmark } from "lucide-react";
+import OrnamentalDivider from "@/components/OrnamentalDivider";
+import { brand, contactDetails, footerColumns } from "@/content/home";
+import { socialLinks } from "@/components/icons/SocialIcons";
+
 export default function SiteFooter() {
   return (
-    <footer className="footer">
+    <footer className="site-footer on-dark">
       <div className="container">
-        <div className="footer-logo">
-          <i className="fa-solid fa-building-columns" aria-hidden="true" /> Attorneyster
+        {/* Correction H-17: flanking ornamental rules at container scale. */}
+        <div className="site-footer__brand">
+          <OrnamentalDivider variant="wide" />
+          <span className="site-brand">
+            <Landmark className="site-brand__mark" size={32} strokeWidth={1.5} aria-hidden="true" />
+            {brand.name}
+          </span>
+          <OrnamentalDivider variant="wide" />
         </div>
 
-        <div className="footer-grid">
-          {footerColumns.map((column) => (
-            <div key={column.heading} className="footer-col">
-              <h4>{column.heading}</h4>
-              <ul>
-                {column.links.map((link) => (
-                  <li key={link}>
-                    <a href="#">{link}</a>
+        <div className="site-footer__grid">
+          {footerColumns.map(({ heading, links, split }) => (
+            <div className="footer-col" key={heading}>
+              {/* Hairline under each heading — hairline 5 of 7, spec §C.5. */}
+              <h2 className="footer-col__heading">{heading}</h2>
+              <ul className={split ? "footer-col__links footer-col__links--split" : "footer-col__links"}>
+                {links.map((label) => (
+                  <li key={label}>
+                    <a href="#">{label}</a>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
 
-          <div className="footer-col">
-            <h4>Contact Us</h4>
-            <ul style={{ color: "var(--text-muted)", fontSize: "14px", lineHeight: 2 }}>
-              <li>
-                {contactDetails.address.split("\n").map((line, i, all) => (
-                  <span key={line}>
-                    {line}
-                    {i < all.length - 1 ? <br /> : null}
-                  </span>
-                ))}
-              </li>
-              <li>Phone: {contactDetails.phone}</li>
-              <li>Email: {contactDetails.email}</li>
-            </ul>
+          {/* Reference reads "Conaetct Us" — corrected under deviation J-13. */}
+          <div className="footer-col footer-col--contact">
+            <h2 className="footer-col__heading">Contact Us</h2>
+            <address>
+              {contactDetails.addressLabel} {contactDetails.address}
+            </address>
+            <address style={{ marginTop: "var(--stack-sm)" }}>
+              Phone:{" "}
+              <a href={`tel:${contactDetails.phone.replace(/[^\d+]/g, "")}`}>{contactDetails.phone}</a>
+              {"\n"}
+              Email: <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+            </address>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <div>Copyright © Attorney Law Designed by VictorFlow Templates - Powered by Webflow</div>
-          <div className="footer-social">
-            Follow:
-            <a href="#" aria-label="Facebook">
-              <i className="fa-brands fa-facebook-f" aria-hidden="true" />
-            </a>
-            <a href="#" aria-label="Twitter">
-              <i className="fa-brands fa-twitter" aria-hidden="true" />
-            </a>
-            <a href="#" aria-label="Instagram">
-              <i className="fa-brands fa-instagram" aria-hidden="true" />
-            </a>
-            <a href="#" aria-label="Pinterest">
-              <i className="fa-brands fa-pinterest" aria-hidden="true" />
-            </a>
+        <div className="site-footer__bottom">
+          {/* Gold-accented copyright segments — OBSERVED, and absent from the
+              forensic report. */}
+          <p>
+            Copyright <span aria-hidden="true">©</span>{" "}
+            <span style={{ color: "var(--accent)" }}>{brand.name}</span> — {brand.tagline}
+          </p>
+
+          <div className="site-footer__social">
+            <span>Follow :</span>
+            {socialLinks.map(({ label, Icon, href }) => (
+              <a key={label} href={href} aria-label={label}>
+                <Icon size={16} />
+              </a>
+            ))}
           </div>
         </div>
       </div>

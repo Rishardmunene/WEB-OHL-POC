@@ -139,3 +139,97 @@ Unsplash images plus one blocked hero background.
 - `qa/stage0-1440-full.png` — 1440×9350 full page
 - `qa/stage0-390-full.png` — 920×12599 full page (note the 920px width: the overflow above)
 - `qa/stage0-header-top.png`, `qa/stage0-header-scrolled.png` — header states
+
+---
+
+# ROUND 2 — post-implementation QA (`stage9`)
+
+Loop run per MASTER PROMPT §17: implement -> render -> screenshot -> compare ->
+correct -> render again. Six rounds were needed. What follows is the final state
+plus the discrepancies each round found, because the corrections matter more than
+the passing numbers.
+
+## Automated gate
+
+| Check | Expected | Measured | Status |
+| ----- | -------- | -------- | ------ |
+| Content container | 0.737 | 0.737 | PASS |
+| 3-col grid column | 0.320 | 0.320 | PASS |
+| 3-col grid gap | 0.020 | 0.020 | PASS |
+| Testimonial column | 0.241 | 0.241 | PASS |
+| Testimonial gap | 0.013 | 0.013 | PASS |
+| Attorney grid gap | 0.018 | 0.018 | PASS |
+| Hero height | 0.566 | 0.566 | PASS |
+| Header row 1 height | 0.077 | 0.077 | PASS |
+| Header total height | 0.158 | 0.158 | PASS |
+| Attorney portrait w:h | 0.678 | 0.678 | PASS |
+| Pre-footer band height | 0.172 | 0.172 | PASS |
+
+`pass=11 fail=0 missing=0`
+
+Structure: 6 practice / 4 testimonial / 6 blog / 3 attorney cards, 10 sections,
+1 `<h1>`. Icons: 0 FontAwesome, 33 inline SVG. Radius offenders 0, shadow
+offenders 0. Images: 0 broken, 0 missing alt, 0 missing intrinsic dimensions,
+0 oversized. Contrast failures: 0. Horizontal overflow: none at 375, 390, 480,
+768, 1024, 1280, 1440, 1728, 1920.
+
+## Discrepancies the numbers did NOT catch
+
+Every item below passed the automated gate and was found only by looking at the
+render against the screenshots. This is the argument for §17 existing at all.
+
+| ID | Element | Found | Evidence |
+| -- | ------- | ----- | -------- |
+| M-12 | Ornamental separator | Built as `short rule + star + long rule`. The horizontals are **continuous** and are **crossed** by a pair of verticals, with a saturated node at the intersection. | Pixel zoom of two independent occurrences (hero on dark, attorneys on light) agree exactly. Box 38x18px at a 744px capture = 0.051 x 0.024 of page width. |
+| M-13 | Hero `<h1>` | Set on THREE lines; reference sets TWO. `max-width: 46ch` resolved against the 16px body size (~368px), not the 60px heading. | "Deeper Understanding" measures 216px of 744 = 0.288 of page width (~498px at 1728). |
+| M-14 | Hero lead colour | Used the cool grey `#A3A7B5` used for muted copy elsewhere. Reference is a warm tan. | Glyph cores across 30 rows peak at `#B69D74` with **nothing brighter anywhere** in the paragraph, so it is not white text tinted by the photo. |
+| M-15 | Form panel | `rgb(30 40 51 / 0.93)`, letting the photo bleed through. Reference panel is fully opaque. | Panel interior is 78,695 pixels of exactly `#1E2833`, zero bleed-through. |
+| M-9 (revised) | Form backdrop | Overlay `rgb(22 29 40 / 0.34)` measured 26.3 mean vs the reference's 37.7. There is **no** overlay. | Reference photo margin mean 37.7; the source photograph's own mean is 38.7. No text sits on the bare photo, so nothing depends on an overlay. Removed. |
+| M-16 | Ornament colour | Forced to `--gold-on-light` (`#877249`) on light sections by the two-gold rule J-5, making it far darker than the reference. | The separator is decorative and `aria-hidden`, so WCAG 1.4.3/1.4.11 do not apply. Measured as `#CFAF71` at ~50% alpha in BOTH polarities: `#E2D6BF` observed on white vs `#E8D9BC` predicted; `#76715A` observed on the hero photo vs `#766B52` predicted. J-5 now explicitly exempts decorative graphics. |
+
+Verification after correction: the light ornament measures 87x41px against a
+target of 88x42, hairlines render `#E7D7B8` against the reference's `#E2D6BF`,
+and the node is full-strength `#CFAF71`.
+
+## Two harness defects found by disagreement with the render
+
+Worth recording because in both cases the instrument, not the page, was wrong.
+
+**1. The full-page capture raced lazy images.** The consultation-form backdrop
+photographed as flat `#1C2430`, and six sampled points were *byte-identical*,
+which composites exactly to `overlay over body background` — the signature of a
+negative-`z-index` layer painting under an opaque background. It was not: a live
+DOM probe showed the image `complete`, `1600x1067`, `visible`, correctly sized,
+and an element-level screenshot of the same section had stddev 15.0, i.e. the
+photo was painting all along. The harness had captured before the lazy image
+decoded, and the artefact was indistinguishable from a real CSS layering bug.
+`tools/qa.mjs` now forces every image to `eager` and awaits `decode()` before
+capturing — after the asset audit reads the real `loading` attributes, so the
+lazy-loading check still means something.
+
+**2. `sips -c` letterboxed instead of cropping.** Derived image variants came
+back with black bars because `-c` pads to the target box rather than filling it.
+`tools/derive-assets.mjs` now scales to cover, then crops.
+
+## Screenshot-derived corrections to imagery
+
+Three assets were thematically wrong rather than technically broken, so no
+automated check could have flagged them: the hero backdrop resolved to a yellow
+book cover, the history backdrop was blurred past legibility, and the pre-footer
+band did not show architecture. All three were re-sourced, and a visible
+duplicate between `blog-5` and `intro-secondary` was varied.
+
+## Known remaining discrepancy
+
+The form backdrop photograph is darker than the reference (mean ~27 across the
+band vs 37.7). The asset is a substitute — the original photography is not
+available — and it is a library interior, which is structurally correct. Noted
+rather than fixed, because replacing it again would be choosing an image for
+brightness rather than for evidence.
+
+## Artifacts
+
+- `qa/stage9-report.json` — machine-readable, all 9 viewports
+- `qa/stage9-1728-full.png` — 1728x11267 reference-viewport capture
+- `qa/stage9-390-full.png` — 390x18011 mobile capture
+- `qa/stage9-header-top.png`, `qa/stage9-header-scrolled.png` — header states

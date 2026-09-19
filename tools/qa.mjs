@@ -55,8 +55,27 @@ const EXPECTED_COLORS = {
   "--gold-on-light": "#877249",
 };
 
+/* 1728 is the DERIVED REFERENCE VIEWPORT and the only width at which the ratio
+   table is meaningful.
+ *
+ * The ratios in EXPECTED were measured from full-page screenshots captured at a
+ * single unknown viewport. Spec §C.1 locks the container at 1280px because
+ * 1280 / 0.737 = 1737, and 1728 is the conventional value there (it is also the
+ * MacBook Pro 16" logical width, a plausible capture device).
+ *
+ * That derivation is corroborated by arithmetic the screenshots did not have to
+ * satisfy: three independently measured grids each sum back to a 1280px
+ * container — 3x(0.320) + 2x(0.020) = 1.000, 4x(0.241) + 3x(0.013) = 1.003,
+ * 3-col attorneys with 0.018 gaps = 1.000.
+ *
+ * Consequence: a fixed-max-width container cannot hold ratio 0.737 at every
+ * width, so ratio checks are asserted at 1728 only. Every other viewport is
+ * still checked for overflow, contrast, structure and assets. */
+const REFERENCE_VIEWPORT = "1728";
+
 const VIEWPORTS = [
   { name: "1920", width: 1920, height: 1080 },
+  { name: REFERENCE_VIEWPORT, width: 1728, height: 1117 },
   { name: "1440", width: 1440, height: 900 },
   { name: "1280", width: 1280, height: 800 },
   { name: "1024", width: 1024, height: 768 },
@@ -264,6 +283,7 @@ async function run() {
     executablePath: CHROME,
     headless: true,
     userDataDir: profileDir,
+    protocolTimeout: 120000,
     args: [
       "--hide-scrollbars",
       "--force-device-scale-factor=1",
@@ -305,13 +325,39 @@ async function run() {
 
       await page.setViewport({ width: vp.width, height: vp.height, deviceScaleFactor: 1 });
       await page.goto(URL_BASE, { waitUntil: "networkidle2", timeout: 60000 });
-      /* Images can still be decoding after networkidle2. */
-      await page.evaluate(() =>
-        Promise.all(
-          Array.from(document.images)
-            .filter((i) => !i.complete)
-            .map((i) => new Promise((res) => { i.onload = i.onerror = res; })),
-        ),
+
+      /* Scroll the whole page, then return to the top.
+         Two reasons, both of which produce wrong results if skipped:
+           1. loading="lazy" images below the fold are never fetched, so the
+              asset audit would report them as neither loaded nor broken.
+           2. .reveal elements start at opacity 0 and are only revealed by the
+              IntersectionObserver, so a full-page screenshot taken without
+              scrolling shows most of the page blank. */
+      await page.evaluate(async () => {
+        const step = window.innerHeight * 0.8;
+        for (let y = 0; y < document.body.scrollHeight; y += step) {
+          window.scrollTo(0, y);
+          await new Promise((r) => setTimeout(r, 60));
+        }
+        window.scrollTo(0, 0);
+        await new Promise((r) => setTimeout(r, 120));
+      });
+      await page.waitForNetworkIdle({ idleTime: 400, timeout: 15000 }).catch(() => {});
+      /* Images can still be decoding after networkidle2.
+         Bounded by a timeout on purpose: below-the-fold images use
+         loading="lazy", so they are never fetched at all and their `complete`
+         stays false forever. Waiting on them unconditionally hangs. */
+      await page.evaluate(
+        (budget) =>
+          Promise.race([
+            Promise.all(
+              Array.from(document.images)
+                .filter((i) => !i.complete)
+                .map((i) => new Promise((res) => { i.onload = i.onerror = res; })),
+            ),
+            new Promise((res) => setTimeout(res, budget)),
+          ]),
+        1500,
       );
       await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => r())));
 
@@ -371,13 +417,43 @@ async function run() {
         overflow,
         imageIssues: raw.imageIssues,
         brokenImages: raw.images.filter((i) => i.broken),
+        /* Which images are oversized, and by how much — a bare count is not
+           actionable when the fix is a per-file resize. */
+        oversizedImages: raw.images
+          .filter((i) => i.naturalW > 0 && i.renderedW > 0 && i.naturalW > i.renderedW * 2)
+          .map((i) => ({
+            src: i.src.replace(/^.*\/images\//, ""),
+            naturalW: i.naturalW,
+            renderedW: i.renderedW,
+            factor: Math.round((i.naturalW / i.renderedW) * 100) / 100,
+          }))
+          .sort((a, b) => b.factor - a.factor),
         icons: raw.icons,
         consoleErrors,
         failedRequests: failedRequests.slice(0, 20),
         notes: raw.notes,
       };
 
-      if (vp.name === "1440" || vp.name === "390") {
+      if (vp.name === REFERENCE_VIEWPORT || vp.name === "390") {
+        /* The asset audit above needs the real `loading` attributes, so only now
+           — after it has run — force every image to load and finish decoding.
+           Without this the full-page capture races lazy images and silently
+           renders sections as flat colour, which reads on inspection as a CSS
+           layering bug rather than a harness artefact. It cost real debugging
+           time on the consultation-form backdrop, so the capture is no longer
+           allowed to be unfaithful. */
+        await page.evaluate(async () => {
+          for (const img of Array.from(document.images)) img.loading = "eager";
+          await Promise.all(
+            Array.from(document.images).map((img) =>
+              img
+                .decode()
+                .catch(() => {}) /* decode() rejects on a broken image; the audit already flagged it */
+            )
+          );
+        });
+        await page.waitForNetworkIdle({ idleTime: 300, timeout: 20000 }).catch(() => {});
+
         await page.screenshot({
           path: path.join(OUT, `${LABEL}-${vp.name}-full.png`),
           fullPage: true,
@@ -401,9 +477,9 @@ async function run() {
 
   await writeFile(path.join(OUT, `${LABEL}-report.json`), JSON.stringify(report, null, 2));
 
-  /* Console summary. */
-  const d = report.viewports["1440"];
-  console.log(`\n=== RATIO QA @1440 (${LABEL}) ===`);
+  /* Console summary, at the reference viewport where the ratios are valid. */
+  const d = report.viewports[REFERENCE_VIEWPORT];
+  console.log(`\n=== RATIO QA @${REFERENCE_VIEWPORT} — reference viewport (${LABEL}) ===`);
   console.log(`page ${d.pageWidth}px   container ${d.containerPx}px\n`);
   console.log("check                        expected   actual    delta   status");
   for (const c of d.checks) {
@@ -417,6 +493,9 @@ async function run() {
   console.log(`radius offenders: ${d.radiusOffenderCount}   shadow offenders: ${d.shadowOffenderCount}`);
   console.log("images:", JSON.stringify(d.imageIssues));
   for (const b of d.brokenImages.slice(0, 8)) console.log(`   BROKEN  ${b.src}`);
+  for (const o of d.oversizedImages.slice(0, 12)) {
+    console.log(`   OVERSIZED ${o.factor}x  ${o.src.padEnd(28)} intrinsic ${o.naturalW} -> rendered ${o.renderedW}`);
+  }
   console.log(`contrast failures (unique fg/size): ${d.contrastFailures.length}`);
   for (const f of d.contrastFailures.slice(0, 12)) {
     console.log(`   ${f.ratio}:1 (needs ${f.required}) ${f.color} ${f.size}px  "${f.text}"`);
