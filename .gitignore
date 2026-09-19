@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+*.local
+tsconfig.tsbuildinfo
+
+# Headless-Chrome profile used by tools/qa.mjs
+.qa-chrome-profile
+
+# QA captures are large binaries and are regenerable from tools/qa.mjs.
+# The JSON reports are kept, since they are the auditable QA record (§17, §26).
+qa/*.png

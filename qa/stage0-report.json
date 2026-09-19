@@ -1,0 +1,2242 @@
+{
+  "label": "stage0",
+  "url": "http://localhost:5173",
+  "when": "2026-09-19T07:10:00.950Z",
+  "viewports": {
+    "375": {
+      "viewport": {
+        "name": "375",
+        "width": 375,
+        "height": 812
+      },
+      "pageWidth": 375,
+      "containerPx": 375,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 375,
+          "ratio": 1,
+          "delta": 0.263,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 218,
+          "ratio": 0.5813,
+          "delta": 0.2613,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 30,
+          "ratio": 0.08,
+          "delta": 0.06,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 282,
+          "ratio": 0.7519,
+          "delta": 0.5109,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.1067,
+          "delta": 0.0937,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.1067,
+          "delta": 0.0887,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 691.4,
+          "ratio": 1.8437,
+          "delta": 1.2777,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 111,
+          "ratio": 0.296,
+          "delta": 0.219,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 217.4,
+          "ratio": 0.5797,
+          "delta": 0.4217,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.2,
+          "ratio": 0.231,
+          "delta": -0.447,
+          "status": "FAIL"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": null,
+          "ratio": null,
+          "status": "MISSING"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 2,
+        "blogCards": 3,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {},
+      "radiusOffenderCount": 1,
+      "radiusOffenders": [
+        {
+          "tag": "img",
+          "cls": "",
+          "radius": "20px"
+        }
+      ],
+      "shadowOffenderCount": 6,
+      "shadowOffenders": [
+        {
+          "tag": "div",
+          "cls": "stat-card dark",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-card gold",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box dark",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "form-container",
+          "shadow": "rgba(0, 0, 0, 0.4) 0px 20px 40px 0px"
+        }
+      ],
+      "contrastFailures": [
+        {
+          "text": "15,890+",
+          "color": "rgb(255, 255, 255)",
+          "size": 36,
+          "ratio": 1.05,
+          "required": 3
+        }
+      ],
+      "overflow": {
+        "docW": 375,
+        "scrollW": 920,
+        "overflowPx": 545,
+        "culprits": [
+          {
+            "tag": "div",
+            "cls": "header-actions",
+            "right": 438,
+            "width": 223
+          },
+          {
+            "tag": "a",
+            "cls": "btn btn-outline",
+            "right": 438,
+            "width": 163
+          },
+          {
+            "tag": "div",
+            "cls": "header-contact",
+            "right": 681,
+            "width": 372
+          },
+          {
+            "tag": "div",
+            "cls": "contact-item",
+            "right": 444,
+            "width": 135
+          },
+          {
+            "tag": "div",
+            "cls": "contact-text",
+            "right": 444,
+            "width": 88
+          },
+          {
+            "tag": "small",
+            "cls": "",
+            "right": 444,
+            "width": 88
+          },
+          {
+            "tag": "strong",
+            "cls": "",
+            "right": 437,
+            "width": 80
+          },
+          {
+            "tag": "div",
+            "cls": "contact-item",
+            "right": 681,
+            "width": 197
+          },
+          {
+            "tag": "div",
+            "cls": "icon",
+            "right": 524,
+            "width": 40
+          },
+          {
+            "tag": "i",
+            "cls": "fa-solid fa-envelope",
+            "right": 512,
+            "width": 16
+          }
+        ]
+      },
+      "imageIssues": {
+        "broken": 2,
+        "missingAlt": 0,
+        "notLazy": 14,
+        "missingDims": 14,
+        "oversized": 10
+      },
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "Bronze statue of Lady Justice holding scales",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 400,
+          "naturalW": 0
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 138,
+          "naturalW": 0
+        }
+      ],
+      "icons": {
+        "fontAwesome": 31,
+        "svg": 0
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=1920&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "notes": [
+        "pre-footer image band absent (gap analysis H-1)"
+      ]
+    },
+    "390": {
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "pageWidth": 390,
+      "containerPx": 390,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 390,
+          "ratio": 1,
+          "delta": 0.263,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 218,
+          "ratio": 0.5589,
+          "delta": 0.2389,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 30,
+          "ratio": 0.0769,
+          "delta": 0.0569,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 282,
+          "ratio": 0.723,
+          "delta": 0.482,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.1026,
+          "delta": 0.0896,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.1026,
+          "delta": 0.0846,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 691.4,
+          "ratio": 1.7728,
+          "delta": 1.2068,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 111,
+          "ratio": 0.2846,
+          "delta": 0.2076,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 217.4,
+          "ratio": 0.5574,
+          "delta": 0.3994,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.2,
+          "ratio": 0.2484,
+          "delta": -0.4296,
+          "status": "FAIL"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": null,
+          "ratio": null,
+          "status": "MISSING"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 2,
+        "blogCards": 3,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {},
+      "radiusOffenderCount": 1,
+      "radiusOffenders": [
+        {
+          "tag": "img",
+          "cls": "",
+          "radius": "20px"
+        }
+      ],
+      "shadowOffenderCount": 6,
+      "shadowOffenders": [
+        {
+          "tag": "div",
+          "cls": "stat-card dark",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-card gold",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box dark",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "form-container",
+          "shadow": "rgba(0, 0, 0, 0.4) 0px 20px 40px 0px"
+        }
+      ],
+      "contrastFailures": [
+        {
+          "text": "15,890+",
+          "color": "rgb(255, 255, 255)",
+          "size": 36,
+          "ratio": 1.05,
+          "required": 3
+        }
+      ],
+      "overflow": {
+        "docW": 390,
+        "scrollW": 920,
+        "overflowPx": 530,
+        "culprits": [
+          {
+            "tag": "div",
+            "cls": "header-actions",
+            "right": 438,
+            "width": 223
+          },
+          {
+            "tag": "a",
+            "cls": "btn btn-outline",
+            "right": 438,
+            "width": 163
+          },
+          {
+            "tag": "div",
+            "cls": "header-contact",
+            "right": 681,
+            "width": 372
+          },
+          {
+            "tag": "div",
+            "cls": "contact-item",
+            "right": 444,
+            "width": 135
+          },
+          {
+            "tag": "div",
+            "cls": "contact-text",
+            "right": 444,
+            "width": 88
+          },
+          {
+            "tag": "small",
+            "cls": "",
+            "right": 444,
+            "width": 88
+          },
+          {
+            "tag": "strong",
+            "cls": "",
+            "right": 437,
+            "width": 80
+          },
+          {
+            "tag": "div",
+            "cls": "contact-item",
+            "right": 681,
+            "width": 197
+          },
+          {
+            "tag": "div",
+            "cls": "icon",
+            "right": 524,
+            "width": 40
+          },
+          {
+            "tag": "i",
+            "cls": "fa-solid fa-envelope",
+            "right": 512,
+            "width": 16
+          }
+        ]
+      },
+      "imageIssues": {
+        "broken": 2,
+        "missingAlt": 0,
+        "notLazy": 14,
+        "missingDims": 14,
+        "oversized": 10
+      },
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "Bronze statue of Lady Justice holding scales",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 400,
+          "naturalW": 0
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 138,
+          "naturalW": 0
+        }
+      ],
+      "icons": {
+        "fontAwesome": 31,
+        "svg": 0
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=1920&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "notes": [
+        "pre-footer image band absent (gap analysis H-1)"
+      ]
+    },
+    "480": {
+      "viewport": {
+        "name": "480",
+        "width": 480,
+        "height": 800
+      },
+      "pageWidth": 480,
+      "containerPx": 480,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 480,
+          "ratio": 1,
+          "delta": 0.263,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 218,
+          "ratio": 0.4541,
+          "delta": 0.1341,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 30,
+          "ratio": 0.0625,
+          "delta": 0.0425,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 282,
+          "ratio": 0.5874,
+          "delta": 0.3464,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0833,
+          "delta": 0.0703,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0833,
+          "delta": 0.0653,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 691.4,
+          "ratio": 1.4404,
+          "delta": 0.8744,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 111,
+          "ratio": 0.2313,
+          "delta": 0.1543,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 217.4,
+          "ratio": 0.4529,
+          "delta": 0.2949,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.3,
+          "ratio": 0.3429,
+          "delta": -0.3351,
+          "status": "FAIL"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": null,
+          "ratio": null,
+          "status": "MISSING"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 2,
+        "blogCards": 3,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {},
+      "radiusOffenderCount": 1,
+      "radiusOffenders": [
+        {
+          "tag": "img",
+          "cls": "",
+          "radius": "20px"
+        }
+      ],
+      "shadowOffenderCount": 6,
+      "shadowOffenders": [
+        {
+          "tag": "div",
+          "cls": "stat-card dark",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-card gold",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box dark",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "form-container",
+          "shadow": "rgba(0, 0, 0, 0.4) 0px 20px 40px 0px"
+        }
+      ],
+      "contrastFailures": [
+        {
+          "text": "15,890+",
+          "color": "rgb(255, 255, 255)",
+          "size": 36,
+          "ratio": 1.05,
+          "required": 3
+        }
+      ],
+      "overflow": {
+        "docW": 480,
+        "scrollW": 920,
+        "overflowPx": 440,
+        "culprits": [
+          {
+            "tag": "div",
+            "cls": "header-contact",
+            "right": 681,
+            "width": 372
+          },
+          {
+            "tag": "div",
+            "cls": "contact-item",
+            "right": 681,
+            "width": 197
+          },
+          {
+            "tag": "div",
+            "cls": "icon",
+            "right": 524,
+            "width": 40
+          },
+          {
+            "tag": "i",
+            "cls": "fa-solid fa-envelope",
+            "right": 512,
+            "width": 16
+          },
+          {
+            "tag": "div",
+            "cls": "contact-text",
+            "right": 681,
+            "width": 142
+          },
+          {
+            "tag": "small",
+            "cls": "",
+            "right": 681,
+            "width": 142
+          },
+          {
+            "tag": "strong",
+            "cls": "",
+            "right": 681,
+            "width": 142
+          },
+          {
+            "tag": "div",
+            "cls": "container",
+            "right": 482,
+            "width": 482
+          },
+          {
+            "tag": "article",
+            "cls": "practice-card",
+            "right": 495,
+            "width": 227
+          },
+          {
+            "tag": "article",
+            "cls": "practice-card",
+            "right": 751,
+            "width": 227
+          }
+        ]
+      },
+      "imageIssues": {
+        "broken": 2,
+        "missingAlt": 0,
+        "notLazy": 14,
+        "missingDims": 14,
+        "oversized": 10
+      },
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "Bronze statue of Lady Justice holding scales",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 400,
+          "naturalW": 0
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 138,
+          "naturalW": 0
+        }
+      ],
+      "icons": {
+        "fontAwesome": 31,
+        "svg": 0
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=1920&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "notes": [
+        "pre-footer image band absent (gap analysis H-1)"
+      ]
+    },
+    "768": {
+      "viewport": {
+        "name": "768",
+        "width": 768,
+        "height": 1024
+      },
+      "pageWidth": 768,
+      "containerPx": 768,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 768,
+          "ratio": 1,
+          "delta": 0.263,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 218,
+          "ratio": 0.2838,
+          "delta": -0.0362,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 30,
+          "ratio": 0.0391,
+          "delta": 0.0191,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 344,
+          "ratio": 0.4479,
+          "delta": 0.2069,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0521,
+          "delta": 0.0391,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0521,
+          "delta": 0.0341,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 819.2,
+          "ratio": 1.0667,
+          "delta": 0.5007,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 87,
+          "ratio": 0.1133,
+          "delta": 0.0363,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 193.4,
+          "ratio": 0.2518,
+          "delta": 0.0938,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.6,
+          "ratio": 0.6171,
+          "delta": -0.0609,
+          "status": "FAIL"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": null,
+          "ratio": null,
+          "status": "MISSING"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 2,
+        "blogCards": 3,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {},
+      "radiusOffenderCount": 1,
+      "radiusOffenders": [
+        {
+          "tag": "img",
+          "cls": "",
+          "radius": "20px"
+        }
+      ],
+      "shadowOffenderCount": 6,
+      "shadowOffenders": [
+        {
+          "tag": "div",
+          "cls": "stat-card dark",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-card gold",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box dark",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "form-container",
+          "shadow": "rgba(0, 0, 0, 0.4) 0px 20px 40px 0px"
+        }
+      ],
+      "contrastFailures": [
+        {
+          "text": "15,890+",
+          "color": "rgb(255, 255, 255)",
+          "size": 36,
+          "ratio": 1.05,
+          "required": 3
+        }
+      ],
+      "overflow": {
+        "docW": 768,
+        "scrollW": 920,
+        "overflowPx": 152,
+        "culprits": [
+          {
+            "tag": "div",
+            "cls": "",
+            "right": 920,
+            "width": 240
+          },
+          {
+            "tag": "h2",
+            "cls": "section-title",
+            "right": 920,
+            "width": 240
+          },
+          {
+            "tag": "div",
+            "cls": "separator",
+            "right": 920,
+            "width": 240
+          },
+          {
+            "tag": "p",
+            "cls": "",
+            "right": 920,
+            "width": 240
+          },
+          {
+            "tag": "div",
+            "cls": "skill-item",
+            "right": 920,
+            "width": 240
+          },
+          {
+            "tag": "div",
+            "cls": "skill-header",
+            "right": 920,
+            "width": 240
+          },
+          {
+            "tag": "span",
+            "cls": "",
+            "right": 865,
+            "width": 185
+          },
+          {
+            "tag": "span",
+            "cls": "",
+            "right": 920,
+            "width": 32
+          },
+          {
+            "tag": "div",
+            "cls": "skill-bar",
+            "right": 920,
+            "width": 240
+          },
+          {
+            "tag": "div",
+            "cls": "skill-progress",
+            "right": 860,
+            "width": 180
+          }
+        ]
+      },
+      "imageIssues": {
+        "broken": 2,
+        "missingAlt": 0,
+        "notLazy": 14,
+        "missingDims": 14,
+        "oversized": 4
+      },
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "Bronze statue of Lady Justice holding scales",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 400,
+          "naturalW": 0
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 223,
+          "naturalW": 0
+        }
+      ],
+      "icons": {
+        "fontAwesome": 31,
+        "svg": 0
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=1920&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "notes": [
+        "pre-footer image band absent (gap analysis H-1)"
+      ]
+    },
+    "1024": {
+      "viewport": {
+        "name": "1024",
+        "width": 1024,
+        "height": 768
+      },
+      "pageWidth": 1024,
+      "containerPx": 1024,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 1024,
+          "ratio": 1,
+          "delta": 0.263,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 308,
+          "ratio": 0.3008,
+          "delta": -0.0192,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 30,
+          "ratio": 0.0293,
+          "delta": 0.0093,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 472,
+          "ratio": 0.4609,
+          "delta": 0.2199,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0391,
+          "delta": 0.0261,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0391,
+          "delta": 0.0211,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 619.9,
+          "ratio": 0.6054,
+          "delta": 0.0394,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 87,
+          "ratio": 0.085,
+          "delta": 0.008,
+          "status": "PASS"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 167.8,
+          "ratio": 0.1638,
+          "delta": 0.0058,
+          "status": "PASS"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 0.9,
+          "ratio": 0.8609,
+          "delta": 0.1829,
+          "status": "FAIL"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": null,
+          "ratio": null,
+          "status": "MISSING"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 2,
+        "blogCards": 3,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {},
+      "radiusOffenderCount": 1,
+      "radiusOffenders": [
+        {
+          "tag": "img",
+          "cls": "",
+          "radius": "20px"
+        }
+      ],
+      "shadowOffenderCount": 6,
+      "shadowOffenders": [
+        {
+          "tag": "div",
+          "cls": "stat-card dark",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-card gold",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box dark",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "form-container",
+          "shadow": "rgba(0, 0, 0, 0.4) 0px 20px 40px 0px"
+        }
+      ],
+      "contrastFailures": [
+        {
+          "text": "15,890+",
+          "color": "rgb(255, 255, 255)",
+          "size": 36,
+          "ratio": 1.05,
+          "required": 3
+        }
+      ],
+      "overflow": {
+        "docW": 1024,
+        "scrollW": 1024,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 2,
+        "missingAlt": 0,
+        "notLazy": 14,
+        "missingDims": 14,
+        "oversized": 0
+      },
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "Bronze statue of Lady Justice holding scales",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 400,
+          "naturalW": 0
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 308,
+          "naturalW": 0
+        }
+      ],
+      "icons": {
+        "fontAwesome": 31,
+        "svg": 0
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=1920&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "notes": [
+        "pre-footer image band absent (gap analysis H-1)"
+      ]
+    },
+    "1280": {
+      "viewport": {
+        "name": "1280",
+        "width": 1280,
+        "height": 800
+      },
+      "pageWidth": 1280,
+      "containerPx": 1200,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 1200,
+          "ratio": 0.9375,
+          "delta": 0.2005,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 366.7,
+          "ratio": 0.3055,
+          "delta": -0.0145,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 30,
+          "ratio": 0.025,
+          "delta": 0.005,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 560,
+          "ratio": 0.4667,
+          "delta": 0.2257,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0333,
+          "delta": 0.0203,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0333,
+          "delta": 0.0153,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 640,
+          "ratio": 0.5,
+          "delta": -0.066,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 87,
+          "ratio": 0.068,
+          "delta": -0.009,
+          "status": "PASS"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 167.8,
+          "ratio": 0.1311,
+          "delta": -0.0269,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 1,
+          "ratio": 1.0286,
+          "delta": 0.3506,
+          "status": "FAIL"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": null,
+          "ratio": null,
+          "status": "MISSING"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 2,
+        "blogCards": 3,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {},
+      "radiusOffenderCount": 1,
+      "radiusOffenders": [
+        {
+          "tag": "img",
+          "cls": "",
+          "radius": "20px"
+        }
+      ],
+      "shadowOffenderCount": 6,
+      "shadowOffenders": [
+        {
+          "tag": "div",
+          "cls": "stat-card dark",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-card gold",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box dark",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "form-container",
+          "shadow": "rgba(0, 0, 0, 0.4) 0px 20px 40px 0px"
+        }
+      ],
+      "contrastFailures": [
+        {
+          "text": "15,890+",
+          "color": "rgb(255, 255, 255)",
+          "size": 36,
+          "ratio": 1.05,
+          "required": 3
+        }
+      ],
+      "overflow": {
+        "docW": 1280,
+        "scrollW": 1280,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 2,
+        "missingAlt": 0,
+        "notLazy": 14,
+        "missingDims": 14,
+        "oversized": 0
+      },
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "Bronze statue of Lady Justice holding scales",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 400,
+          "naturalW": 0
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 367,
+          "naturalW": 0
+        }
+      ],
+      "icons": {
+        "fontAwesome": 31,
+        "svg": 0
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=1920&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "notes": [
+        "pre-footer image band absent (gap analysis H-1)"
+      ]
+    },
+    "1440": {
+      "viewport": {
+        "name": "1440",
+        "width": 1440,
+        "height": 900
+      },
+      "pageWidth": 1440,
+      "containerPx": 1200,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 1200,
+          "ratio": 0.8333,
+          "delta": 0.0963,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 366.7,
+          "ratio": 0.3055,
+          "delta": -0.0145,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 30,
+          "ratio": 0.025,
+          "delta": 0.005,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 560,
+          "ratio": 0.4667,
+          "delta": 0.2257,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0333,
+          "delta": 0.0203,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0333,
+          "delta": 0.0153,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 720,
+          "ratio": 0.5,
+          "delta": -0.066,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 87,
+          "ratio": 0.0604,
+          "delta": -0.0166,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 167.8,
+          "ratio": 0.1165,
+          "delta": -0.0415,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 1,
+          "ratio": 1.0286,
+          "delta": 0.3506,
+          "status": "FAIL"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": null,
+          "ratio": null,
+          "status": "MISSING"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 2,
+        "blogCards": 3,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {},
+      "radiusOffenderCount": 1,
+      "radiusOffenders": [
+        {
+          "tag": "img",
+          "cls": "",
+          "radius": "20px"
+        }
+      ],
+      "shadowOffenderCount": 6,
+      "shadowOffenders": [
+        {
+          "tag": "div",
+          "cls": "stat-card dark",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-card gold",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box dark",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "form-container",
+          "shadow": "rgba(0, 0, 0, 0.4) 0px 20px 40px 0px"
+        }
+      ],
+      "contrastFailures": [
+        {
+          "text": "15,890+",
+          "color": "rgb(255, 255, 255)",
+          "size": 36,
+          "ratio": 1.05,
+          "required": 3
+        }
+      ],
+      "overflow": {
+        "docW": 1440,
+        "scrollW": 1440,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 2,
+        "missingAlt": 0,
+        "notLazy": 14,
+        "missingDims": 14,
+        "oversized": 0
+      },
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "Bronze statue of Lady Justice holding scales",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 400,
+          "naturalW": 0
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 367,
+          "naturalW": 0
+        }
+      ],
+      "icons": {
+        "fontAwesome": 31,
+        "svg": 0
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=1920&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "notes": [
+        "pre-footer image band absent (gap analysis H-1)"
+      ]
+    },
+    "1920": {
+      "viewport": {
+        "name": "1920",
+        "width": 1920,
+        "height": 1080
+      },
+      "pageWidth": 1920,
+      "containerPx": 1200,
+      "checks": [
+        {
+          "id": "container",
+          "label": "Content container",
+          "of": "page",
+          "value": 0.737,
+          "tol": 0.01,
+          "actual": 1200,
+          "ratio": 0.625,
+          "delta": -0.112,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-col",
+          "label": "3-col grid column",
+          "of": "container",
+          "value": 0.32,
+          "tol": 0.012,
+          "actual": 366.7,
+          "ratio": 0.3055,
+          "delta": -0.0145,
+          "status": "FAIL"
+        },
+        {
+          "id": "grid3-gap",
+          "label": "3-col grid gap",
+          "of": "container",
+          "value": 0.02,
+          "tol": 0.006,
+          "actual": 30,
+          "ratio": 0.025,
+          "delta": 0.005,
+          "status": "PASS"
+        },
+        {
+          "id": "testimonial-col",
+          "label": "Testimonial column",
+          "of": "container",
+          "value": 0.241,
+          "tol": 0.015,
+          "actual": 560,
+          "ratio": 0.4667,
+          "delta": 0.2257,
+          "status": "FAIL"
+        },
+        {
+          "id": "testimonial-gap",
+          "label": "Testimonial gap",
+          "of": "container",
+          "value": 0.013,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0333,
+          "delta": 0.0203,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-gap",
+          "label": "Attorney grid gap",
+          "of": "container",
+          "value": 0.018,
+          "tol": 0.006,
+          "actual": 40,
+          "ratio": 0.0333,
+          "delta": 0.0153,
+          "status": "FAIL"
+        },
+        {
+          "id": "hero-height",
+          "label": "Hero height",
+          "of": "page",
+          "value": 0.566,
+          "tol": 0.03,
+          "actual": 864,
+          "ratio": 0.45,
+          "delta": -0.116,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-row1",
+          "label": "Header row 1 height",
+          "of": "page",
+          "value": 0.077,
+          "tol": 0.012,
+          "actual": 87,
+          "ratio": 0.0453,
+          "delta": -0.0317,
+          "status": "FAIL"
+        },
+        {
+          "id": "header-total",
+          "label": "Header total height",
+          "of": "page",
+          "value": 0.158,
+          "tol": 0.018,
+          "actual": 167.8,
+          "ratio": 0.0874,
+          "delta": -0.0706,
+          "status": "FAIL"
+        },
+        {
+          "id": "attorney-aspect",
+          "label": "Attorney portrait w:h",
+          "of": "self",
+          "value": 0.678,
+          "tol": 0.03,
+          "actual": 1,
+          "ratio": 1.0286,
+          "delta": 0.3506,
+          "status": "FAIL"
+        },
+        {
+          "id": "band-height",
+          "label": "Pre-footer band height",
+          "of": "page",
+          "value": 0.172,
+          "tol": 0.02,
+          "actual": null,
+          "ratio": null,
+          "status": "MISSING"
+        }
+      ],
+      "counts": {
+        "practiceCards": 6,
+        "testimonialCards": 2,
+        "blogCards": 3,
+        "attorneyCards": 3,
+        "sections": 10,
+        "h1": 1
+      },
+      "tokens": {},
+      "radiusOffenderCount": 1,
+      "radiusOffenders": [
+        {
+          "tag": "img",
+          "cls": "",
+          "radius": "20px"
+        }
+      ],
+      "shadowOffenderCount": 6,
+      "shadowOffenders": [
+        {
+          "tag": "div",
+          "cls": "stat-card dark",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-card gold",
+          "shadow": "rgba(0, 0, 0, 0.3) 0px 10px 30px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "stat-box dark",
+          "shadow": "rgba(0, 0, 0, 0.03) 0px 5px 20px 0px"
+        },
+        {
+          "tag": "div",
+          "cls": "form-container",
+          "shadow": "rgba(0, 0, 0, 0.4) 0px 20px 40px 0px"
+        }
+      ],
+      "contrastFailures": [
+        {
+          "text": "15,890+",
+          "color": "rgb(255, 255, 255)",
+          "size": 36,
+          "ratio": 1.05,
+          "required": 3
+        }
+      ],
+      "overflow": {
+        "docW": 1920,
+        "scrollW": 1920,
+        "overflowPx": 0,
+        "culprits": []
+      },
+      "imageIssues": {
+        "broken": 2,
+        "missingAlt": 0,
+        "notLazy": 14,
+        "missingDims": 14,
+        "oversized": 0
+      },
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "Bronze statue of Lady Justice holding scales",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 400,
+          "naturalW": 0
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=",
+          "broken": true,
+          "alt": "",
+          "loading": null,
+          "hasDims": false,
+          "renderedW": 367,
+          "naturalW": 0
+        }
+      ],
+      "icons": {
+        "fontAwesome": 31,
+        "svg": 0
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "failedRequests": [
+        {
+          "url": "http://localhost:5173/favicon.ico",
+          "type": "other",
+          "reason": "HTTP 404"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=1920&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1618055535359-55cb8584852e?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1505664177922-24155b93d6e4?auto=format&fit=crop&w=400&q=80",
+          "type": "image",
+          "reason": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "notes": [
+        "pre-footer image band absent (gap analysis H-1)"
+      ]
+    }
+  }
+}
