@@ -39,7 +39,11 @@
 @media (max-width: 1023px) {
   .practice__grid,
   .blog__grid,
-  .stats-row {
+  .stats-row,
+  .entity-grid,
+  .blog__grid--sparse,
+  .contact-strip,
+  .entity-profile__dl {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -120,11 +124,15 @@
 @media (max-width: 767px) {
   .practice__grid,
   .blog__grid,
+  .blog__grid--sparse,
   .stats-row,
   .testimonials__grid,
   .attorneys__grid,
   .history__grid,
-  .form-grid {
+  .form-grid,
+  .entity-grid,
+  .contact-strip,
+  .entity-profile__dl {
     grid-template-columns: 1fr;
   }
 
@@ -175,7 +183,7 @@
 
   .hero {
     height: auto;
-    min-height: 560px;
+    min-height: 640px;
     padding-bottom: var(--stack-xl);
   }
 

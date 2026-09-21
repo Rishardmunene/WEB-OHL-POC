@@ -80,9 +80,10 @@ export function LinkedinIcon(props: IconProps) {
 }
 
 /* Ordered as they appear in the reference bars. */
+/* Destinations taken from the official Ojijo Group Luma profile. Facebook is
+   not verified there, so it is omitted rather than linked to a guess. */
 export const socialLinks = [
-  { label: "Instagram", Icon: InstagramIcon, href: "#" },
-  { label: "Facebook", Icon: FacebookIcon, href: "#" },
-  { label: "X (Twitter)", Icon: TwitterIcon, href: "#" },
-  { label: "LinkedIn", Icon: LinkedinIcon, href: "#" },
+  { label: "Instagram", Icon: InstagramIcon, href: "https://instagram.com/ojijo_group" },
+  { label: "X (Twitter)", Icon: TwitterIcon, href: "https://x.com/OjijoGroup" },
+  { label: "LinkedIn", Icon: LinkedinIcon, href: "https://www.linkedin.com/company/ojijo-group-originals" },
 ];
