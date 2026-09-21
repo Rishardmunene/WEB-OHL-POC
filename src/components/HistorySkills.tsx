@@ -12,7 +12,7 @@ export default function HistorySkills() {
       <div className="container">
         <div className="history__panel">
           <div className="history__grid">
-            <div>
+            <div className="reveal">
               <h2 className="section-heading" id="history-title">
                 {philosophy.headingLines[0]}
               </h2>
@@ -40,7 +40,7 @@ export default function HistorySkills() {
               />
             </div>
 
-            <div>
+            <div className="reveal" style={{ ["--reveal-delay" as string]: "80ms" }}>
               <h2 className="section-heading">
                 {capabilityAside.headingLines[0]}
                 <br />

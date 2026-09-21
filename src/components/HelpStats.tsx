@@ -5,7 +5,7 @@ export default function HelpStats() {
   return (
     <section className="section section--light on-light" aria-labelledby="help-title">
       <div className="container">
-        <div className="help__head section-head--center">
+        <div className="help__head section-head--center reveal">
           <h2 className="section-heading" id="help-title">
             Who the Group
             <br />

@@ -92,21 +92,30 @@
   --text-lead-warm: #c3aa80;         /* OBSERVED */
 
   /* ---------------------------------------------------------------------------
-     RADIUS — the single best-confirmed property in the whole reference.
-     Spec §C.4: 0 on every rectangular element, across all five screenshots,
-     and independently agreed by the forensic report. Non-zero is reserved for
-     circles. Any non-zero radius on a rectangle requires a Deviation entry.
+     RADIUS — refinement pass. Forensic reconstruction used 0 everywhere.
+     This pass introduces a restrained hierarchy so surfaces feel architectural
+     rather than pill-shaped. Full-bleed bands (hero, header, prefooter) stay 0.
      ------------------------------------------------------------------------ */
-  --radius-surface: 0;
+  --radius-control: 8px;     /* inputs, icon wells, small chrome */
+  --radius-button: 8px;
+  --radius-card: 14px;
+  --radius-feature: 18px;    /* form panel, history panel, consult card */
+  --radius-surface: var(--radius-card);
   --radius-circle: 9999px;
 
   /* ---------------------------------------------------------------------------
-     ELEVATION — spec §C.5. No shadow is detectable on any surface in any
-     screenshot. The reference builds hierarchy from fill-tone difference and
-     hairline rules instead. This token exists so that "no shadow" is an
-     explicit decision rather than an omission.
+     ELEVATION — restrained, diffuse, no hard black drop. Hover-only changes;
+     no looping shadow animation.
      ------------------------------------------------------------------------ */
   --shadow-0: none;
+  --shadow-1: 0 1px 3px rgb(16 22 30 / 0.08);
+  --shadow-2: 0 8px 24px rgb(16 22 30 / 0.10);
+  --shadow-3: 0 16px 40px rgb(16 22 30 / 0.14);
+  --gold-deep: #b38d48;
+  --card-border: rgb(255 255 255 / 0.08);
+  --card-border-hover: rgb(207 175 113 / 0.38);
+  --shadow-card: 0 8px 28px rgb(0 0 0 / 0.18);
+  --shadow-card-hover: 0 14px 36px rgb(0 0 0 / 0.28);
 
   /* Hairlines — spec §C.5 catalogues seven, five of which the forensic report
      missed entirely. Decorative hairlines may stay faint. */
@@ -157,9 +166,10 @@
      observed inventory is one button hover and nothing else. Timings come from
      Rules.md §14-15, which the audit found sound.
      ------------------------------------------------------------------------ */
-  --motion-fast: 140ms;
+  --motion-fast: 160ms;
   --motion-normal: 220ms;
-  --motion-slow: 340ms;
+  --motion-slow: 420ms;
+  --motion-page: 240ms;
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* ---------------------------------------------------------------------------
@@ -184,6 +194,10 @@
   --hairline: var(--hairline-on-dark);
   --field-border: var(--field-border-on-dark);
   --focus-ring: var(--focus-ring-on-dark);
+  --card-border: rgb(255 255 255 / 0.08);
+  --card-border-hover: rgb(207 175 113 / 0.38);
+  --shadow-card: 0 8px 28px rgb(0 0 0 / 0.22);
+  --shadow-card-hover: 0 14px 36px rgb(0 0 0 / 0.32);
   color: var(--fg);
 }
 
@@ -194,6 +208,10 @@
   --hairline: var(--hairline-on-light);
   --field-border: var(--field-border-on-light);
   --focus-ring: var(--focus-ring-on-light);
+  --card-border: rgb(30 40 51 / 0.08);
+  --card-border-hover: rgb(135 114 73 / 0.38);
+  --shadow-card: 0 6px 22px rgb(30 40 51 / 0.08);
+  --shadow-card-hover: 0 12px 32px rgb(30 40 51 / 0.12);
   color: var(--fg);
 }
 
@@ -209,5 +227,6 @@
     --motion-fast: 1ms;
     --motion-normal: 1ms;
     --motion-slow: 1ms;
+    --motion-page: 1ms;
   }
 }

@@ -6,7 +6,7 @@ export default function PracticeAreas() {
   return (
     <section className="section section--deep on-dark" id="expertise" aria-labelledby="practice-title">
       <div className="container">
-        <div className="practice__head">
+        <div className="practice__head reveal">
           <div>
             <h2 className="section-heading" id="practice-title">
               {expertiseHead.titleLines[0]}

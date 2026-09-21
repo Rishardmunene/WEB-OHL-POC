@@ -162,10 +162,22 @@ address {
 
 .section--deep {
   background-color: var(--surface-deep);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
 }
 
 .section--light {
   background-color: var(--surface-light);
+  box-shadow: inset 0 1px 0 rgb(30 40 51 / 0.05);
+}
+
+.section-kicker {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
 }
 
 .section-heading {
@@ -177,6 +189,14 @@ address {
   max-width: 62ch;
 }
 
+.section-head--center .ornament {
+  margin-top: 8px;
+}
+
+.section-head--center .section-lead {
+  margin-top: var(--stack-sm);
+}
+
 .section-head--center {
   text-align: center;
   display: flex;
@@ -185,10 +205,7 @@ address {
 }
 
 /* -----------------------------------------------------------------------------
-   BUTTONS — spec §C.7
-   Square (radius 0) and shadowless. Only one hover state is OBSERVED anywhere
-   in the reference: "Learn More" going to gold fill with dark text. Every other
-   hover is UNCERTAIN and is treated as a minimal refinement.
+   BUTTONS — slightly rounded, tactile hover/active, gold family only.
    -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex;
@@ -200,43 +217,66 @@ address {
   font-size: 15px;
   font-weight: var(--fw-medium);
   text-align: center;
-  border-radius: var(--radius-surface);
+  border-radius: var(--radius-button);
   box-shadow: var(--shadow-0);
   cursor: pointer;
   transition:
-    background-color var(--motion-normal) var(--ease-standard),
-    color var(--motion-normal) var(--ease-standard),
-    border-color var(--motion-normal) var(--ease-standard),
-    transform var(--motion-fast) var(--ease-standard);
+    background-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
 }
 
-/* Press feedback — refinement, spec §D.2. transform only, so it composites. */
-.btn:active {
-  transform: translateY(1px);
+.btn svg {
+  flex: none;
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.btn:active,
+.btn:hover:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-1);
+}
+
+.btn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring, var(--gold));
+  outline-offset: var(--focus-ring-offset);
 }
 
 .btn--gold {
   background-color: var(--gold);
-  color: var(--surface-dark); /* dark glyph/text on gold — 7.13:1. Never white (J-5) */
+  color: var(--surface-dark);
 }
 
 .btn--gold:hover {
-  background-color: #c0a061;
+  background-color: var(--gold-deep);
+  box-shadow: 0 8px 18px rgb(179 141 72 / 0.28);
 }
 
-/* Correction H-13. The forensic markup rendered this as a transparent button
-   with a gold border and gold text. The evidence shows the REST state as a dark
-   fill with white text and no border; gold fill is the HOVER state. The
-   forensic version effectively showed the hover state permanently. */
+.btn--gold:active,
+.btn--gold:hover:active {
+  background-color: #a37f3f;
+}
+
 .btn--learn {
   background-color: var(--surface-dark);
   color: var(--text-on-dark);
-  border: none;
+  border: 1px solid rgb(255 255 255 / 0.08);
 }
 
 .btn--learn:hover {
   background-color: var(--gold);
   color: var(--surface-dark);
+  border-color: var(--gold);
 }
 
 .btn--outline-light {
@@ -246,12 +286,11 @@ address {
 }
 
 .btn--outline-light:hover {
+  background-color: rgb(255 255 255 / 0.05);
   border-color: var(--gold);
   color: var(--gold);
 }
 
-/* Outline on light sections — OBSERVED as a white fill with a thin dark border
-   ("Meet Attorney"). Hover is UNCERTAIN, so it stays minimal. */
 .btn--outline-dark {
   background-color: var(--surface-light);
   border: 1px solid #d0d0d0;
@@ -259,11 +298,23 @@ address {
 }
 
 .btn--outline-dark:hover {
+  background-color: #f6f2ea;
   border-color: var(--gold-on-light);
   color: var(--gold-on-light);
 }
 
-/* Form submit — OBSERVED as a white fill with dark text. */
+.btn--outline-gold {
+  background-color: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+
+.btn--outline-gold:hover {
+  background-color: rgb(207 175 113 / 0.12);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
 .btn--white {
   background-color: var(--surface-light);
   color: var(--text-on-light);
@@ -271,6 +322,7 @@ address {
 
 .btn--white:hover {
   background-color: #ebe6dc;
+  box-shadow: var(--shadow-1);
 }
 
 .btn--block {
@@ -400,7 +452,7 @@ address {
    -------------------------------------------------------------------------- */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(12px);
   transition:
     opacity var(--motion-slow) var(--ease-standard),
     transform var(--motion-slow) var(--ease-standard);
@@ -412,12 +464,42 @@ address {
   transform: none;
 }
 
-/* Reduced motion keeps the content, drops the movement (spec §D.2). Also the
-   no-JS fallback: without the observer nothing would ever become visible. */
+.page-frame {
+  animation: page-enter var(--motion-page) var(--ease-standard) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .page-frame {
+    animation: none;
+  }
+
+  .btn:hover,
+  .btn:hover svg,
+  .practice-card:hover,
+  .entity-card:hover,
+  .training-card:hover,
+  .leader-card:hover,
+  .leader-card--dark:hover,
+  .pathway-card:hover,
+  .blog-card:hover,
+  .site-footer__social a:hover {
+    transform: none;
   }
 }

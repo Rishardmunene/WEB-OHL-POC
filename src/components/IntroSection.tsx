@@ -1,7 +1,10 @@
+import { Globe, MapPin } from "lucide-react";
 import OrnamentalDivider from "@/components/OrnamentalDivider";
 import { intro } from "@/content/group";
 
 export default function IntroSection() {
+  const [location, reach] = intro.presence;
+
   return (
     <section className="section section--dark on-dark" id="group-intro" aria-labelledby="intro-title">
       <div className="container intro__grid">
@@ -35,18 +38,23 @@ export default function IntroSection() {
             <p className="signature__role">{intro.signatureRole}</p>
           </div>
 
-          <div className="stat-tiles">
-            {intro.tiles.map((tile) => (
-              <div key={tile.label} className="stat-tile stat-tile--dark">
-                <span>
-                  <span className="stat-tile__value">{tile.value}</span>
-                  <span className="stat-tile__label" style={{ whiteSpace: "pre-line", display: "block" }}>
-                    {tile.label}
-                  </span>
-                </span>
-              </div>
-            ))}
-          </div>
+          <ul className="presence-strip">
+            <li className="presence-strip__item">
+              <MapPin size={22} strokeWidth={1.5} aria-hidden="true" />
+              <span>
+                {location.lead}
+                <span className="presence-strip__em">{location.emphasis}</span>
+              </span>
+            </li>
+            <li className="presence-strip__rule" aria-hidden="true" />
+            <li className="presence-strip__item">
+              <Globe size={22} strokeWidth={1.5} aria-hidden="true" />
+              <span>
+                {reach.lead}
+                <span className="presence-strip__em">{reach.emphasis}</span>
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

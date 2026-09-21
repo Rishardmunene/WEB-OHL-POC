@@ -28,23 +28,10 @@
   top: 0;
   z-index: var(--z-header);
 
-  /* Correction M-1: the forensic version was rgba(27,30,37,.95) + blur(10px) +
-     a 3px gold top border at rest. The reference has none of that — it is fully
-     transparent over the hero. */
-  background-color: transparent;
-
-  /* J-2 (refinement): scroll treatment interpolated continuously from
-     --scroll-progress (0..1), set by one passive rAF-throttled listener. Not an
-     abrupt state swap, per MASTER PROMPT §13 Stage 3. */
   --scroll-progress: 0;
-  background-color: rgb(30 40 51 / calc(var(--scroll-progress) * 0.92));
-
-  /* Blur is bounded and confined to the navigation only (spec §G). The
-     reference has no blur anywhere, so this is pure refinement. */
-  backdrop-filter: blur(calc(var(--scroll-progress) * 12px));
-  transition:
-    background-color var(--motion-normal) var(--ease-standard),
-    backdrop-filter var(--motion-normal) var(--ease-standard);
+  background-color: rgb(30 40 51 / calc(0.04 + var(--scroll-progress) * 0.9));
+  backdrop-filter: blur(calc(var(--scroll-progress) * 16px));
+  box-shadow: 0 10px 28px rgb(0 0 0 / calc(var(--scroll-progress) * 0.18));
 }
 
 /* Hairline appears only once scrolled — it is part of J-2, not of the rest state. */
@@ -105,12 +92,41 @@
   height: clamp(64px, 6vw, 96px);
 }
 
-.main-nav__link.active {
+.main-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding-block: 6px;
+  color: rgb(255 255 255 / 0.78);
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    opacity var(--motion-fast) var(--ease-standard);
+}
+
+.main-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--gold);
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--ease-standard);
+}
+
+.main-nav__link:hover {
   color: var(--gold);
 }
 
-.btn svg {
-  flex: none;
+.main-nav__link:hover::after,
+.main-nav__link.active::after {
+  opacity: 1;
+}
+
+.main-nav__link.active {
+  color: var(--gold);
 }
 
 .site-header__actions {
@@ -136,20 +152,6 @@
   align-items: center;
   gap: clamp(18px, 2vw, 35px);
   font-size: 15px;
-}
-
-.main-nav__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding-block: 6px;
-}
-
-/* Correction L-1: the forensic version painted the active link gold. In the
-   reference "Home" reads white, identical to its siblings. Hover stays gold as
-   a minimal refinement — no hover state is observable for nav links. */
-.main-nav__link:hover {
-  color: var(--gold);
 }
 
 .header-contact {
@@ -188,6 +190,11 @@
 .contact-item__value {
   font-size: 15px;
   font-weight: var(--fw-medium);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.contact-item__value:hover {
+  color: var(--gold);
 }
 
 /* Mobile disclosure — J-11, entirely inferred; no sub-desktop evidence exists. */
@@ -197,6 +204,16 @@
   height: 44px;
   place-items: center;
   color: var(--text-on-dark);
+  border-radius: var(--radius-control);
+  border: 1px solid transparent;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.nav-toggle:hover {
+  border-color: var(--hairline-on-dark);
+  background-color: rgb(255 255 255 / 0.04);
 }
 
 /* =============================================================================
@@ -316,9 +333,8 @@
   }
 }
 
-/* Correction H-2: the forensic floated the two stat tiles out of the hero with
-   `position:absolute; bottom:-50px; right:20%`. In the reference they sit in the
-   INTRO section in normal flow. See .stat-tile below. */
+/* Correction H-2: the forensic floated the two stat tiles out of the hero.
+   They now sit in the intro as a ruled presence strip. */
 
 /* =============================================================================
    3. INTRO — corrections H-11 (collage), H-2 (stat tiles), M-10 (script), C-6
@@ -398,66 +414,47 @@
 /* Correction H-2: stat tiles live here, in normal flow.
    Correction C-3: the forensic gave these `0 10px 30px rgba(0,0,0,.3)`; no
    shadow is detectable on any surface in the reference. */
-.stat-tiles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gap-grid-3);
-}
-
-.stat-tile {
+.presence-strip {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 20px 28px;
-  border-radius: var(--radius-surface);
-  box-shadow: var(--shadow-0);
-  min-width: 232px;
+  width: 100%;
+  margin: 0;
+  padding-block: 22px;
+  list-style: none;
+  gap: 28px;
+  border-top: 1px solid rgb(207 175 113 / 0.32);
+  border-bottom: 1px solid rgb(207 175 113 / 0.32);
 }
 
-.stat-tile--dark {
-  background-color: var(--surface-raised);
+.presence-strip__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.4;
+  color: #d4d7de;
+  white-space: nowrap;
 }
 
-.stat-tile--dark .stat-tile__icon {
-  color: var(--gold);
-}
-
-.stat-tile--gold {
-  background-color: var(--gold);
-  color: var(--surface-dark);
-}
-
-/* The gold tile puts its number inside a dark square badge — OBSERVED. */
-.stat-tile__badge {
-  display: grid;
-  place-items: center;
-  padding: 8px 12px;
-  background-color: var(--surface-dark);
-  color: var(--text-on-dark);
-  font-size: 20px;
-  font-weight: var(--fw-semibold);
-  border-radius: var(--radius-surface);
+.presence-strip__item svg {
   flex: none;
+  color: var(--accent);
 }
 
-.stat-tile__value {
-  font-size: 22px;
-  font-weight: var(--fw-semibold);
-  line-height: 1.1;
+.presence-strip__em {
+  color: var(--text-on-dark);
+  font-weight: var(--fw-medium);
 }
 
-.stat-tile__label {
-  font-size: var(--fs-small);
-  line-height: 1.35;
-}
-
-.stat-tile--dark .stat-tile__label {
-  color: var(--fg-muted);
-}
-
-/* Dark text on gold is 7.13:1. White on gold is 2.10:1 and is forbidden (J-5). */
-.stat-tile--gold .stat-tile__label {
-  color: rgb(30 40 51 / 0.82);
+.presence-strip__rule {
+  width: 1px;
+  height: 32px;
+  padding: 0;
+  background-color: rgb(207 175 113 / 0.45);
+  flex: none;
+  align-self: center;
 }
 
 /* =============================================================================
@@ -503,25 +500,30 @@
   flex-direction: column;
   background-color: var(--surface-card-dark);
   padding: clamp(28px, 2.4vw, 42px) clamp(24px, 2vw, 34px);
-  border-radius: var(--radius-surface);
-  box-shadow: var(--shadow-0);
-  transition: transform var(--motion-normal) var(--ease-standard);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--motion-normal) var(--ease-standard),
+    box-shadow var(--motion-normal) var(--ease-standard),
+    border-color var(--motion-normal) var(--ease-standard);
 }
 
-/* Correction H-15 + refinement J-3. The one hovered card in the evidence (Car
-   Accident) shows NO lift, NO shadow change and NO gold bottom border. The gold
-   border is removed outright. The small lift is retained only as J-3, which is
-   the weakest-justified entry in the register because it contradicts a direct
-   observation rather than filling a void. */
 .practice-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--card-border-hover);
+}
+
+.practice-card:hover .practice-card__icon {
+  transform: translateX(2px);
 }
 
 .practice-card__lens {
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: var(--fw-medium);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 10px;
@@ -555,6 +557,7 @@
 .practice-card__icon {
   color: var(--accent);
   flex: none;
+  transition: transform var(--motion-fast) var(--ease-standard);
 }
 
 /* =============================================================================
@@ -753,8 +756,9 @@
 .history__panel {
   background-color: var(--panel-scrim);
   padding: clamp(32px, 3.5vw, 60px);
-  border-radius: var(--radius-surface);
-  box-shadow: var(--shadow-0);
+  border-radius: var(--radius-feature);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-2);
 }
 
 .history__grid {
@@ -950,9 +954,11 @@
 
 .attorneys__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-attorneys); /* 0.018 x container = 23px; forensic used 40px */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap-attorneys);
+  row-gap: var(--stack-lg);
   margin-top: var(--stack-xl);
+  align-items: stretch;
 }
 
 .attorney-card {
@@ -1049,12 +1055,14 @@
 .consult-card {
   background-color: var(--surface-light);
   padding: 14px;
-  border-radius: var(--radius-surface);
-  box-shadow: var(--shadow-0);
+  border-radius: var(--radius-feature);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-card);
 }
 
 .consult-card__inner {
   border: 1px solid #d8d8d8;
+  border-radius: calc(var(--radius-feature) - 6px);
   padding: clamp(24px, 2.4vw, 40px);
 }
 
@@ -1084,7 +1092,7 @@
   aspect-ratio: 1;
   background-color: var(--gold);
   color: var(--surface-dark);
-  border-radius: var(--radius-surface);
+  border-radius: var(--radius-control);
   flex: none;
 }
 
@@ -1140,8 +1148,9 @@
 .form-panel {
   background-color: var(--surface-dark);
   padding: clamp(32px, 3.5vw, 60px);
-  border-radius: var(--radius-surface);
-  box-shadow: var(--shadow-0);
+  border-radius: var(--radius-feature);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-2);
 }
 
 .form-grid {
@@ -1173,26 +1182,30 @@
 .field input,
 .field textarea {
   width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--field-border);
-  padding: 10px 0;
+  background: rgb(255 255 255 / 0.03);
+  border: 1px solid var(--field-border);
+  padding: 12px 14px;
   color: var(--fg);
   font-family: var(--font-sans);
   font-size: 15px;
-  border-radius: var(--radius-surface);
-  transition: border-color var(--motion-fast) var(--ease-standard);
+  border-radius: var(--radius-control);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
 }
 
 .field input:hover,
 .field textarea:hover {
-  border-bottom-color: var(--fg-muted);
+  border-color: var(--fg-muted);
 }
 
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgb(207 175 113 / 0.18);
+  background: rgb(255 255 255 / 0.045);
 }
 
 /* The underline is the control boundary, so the focus ring is drawn on the
@@ -1249,6 +1262,14 @@
   margin-top: var(--stack-xl);
 }
 
+.blog-card {
+  transition: transform var(--motion-normal) var(--ease-standard);
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
+}
+
 .blog-card__media {
   aspect-ratio: 4 / 3;
   margin-bottom: var(--stack-sm);
@@ -1298,6 +1319,14 @@
   font-size: var(--fs-xs);
   text-decoration: underline;
   text-underline-offset: 4px;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    text-underline-offset var(--motion-fast) var(--ease-standard);
+}
+
+.read-more:hover {
+  color: var(--gold);
+  text-underline-offset: 6px;
 }
 
 /* =============================================================================
@@ -1326,7 +1355,8 @@
    forensic darkened it to #16181d, inventing a hierarchy the reference lacks. */
 .site-footer {
   background-color: var(--surface-dark);
-  padding-block: var(--stack-xl) var(--stack-md);
+  padding-block: clamp(72px, 7vw, 112px) var(--stack-lg);
+  border-top: 1px solid var(--hairline-on-dark);
 }
 
 /* Correction H-17: the logo is flanked by long double-hairline gold rules
@@ -1375,6 +1405,7 @@
 .footer-col a {
   color: var(--fg-muted);
   font-size: var(--fs-small);
+  transition: color var(--motion-fast) var(--ease-standard);
 }
 
 .footer-col a:hover {
@@ -1394,7 +1425,8 @@
   justify-content: space-between;
   gap: var(--stack-md);
   flex-wrap: wrap;
-  padding-top: var(--stack-md);
+  padding-top: var(--stack-lg);
+  margin-top: var(--stack-md);
   border-top: 1px solid var(--hairline);
   color: var(--fg-muted);
   font-size: var(--fs-xs);
@@ -1410,18 +1442,29 @@
 .site-footer__social {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
 
 .site-footer__social a {
   display: grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
+  color: var(--fg-muted);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-control);
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
 }
 
 .site-footer__social a:hover {
   color: var(--accent);
+  border-color: var(--card-border-hover);
+  background-color: rgb(207 175 113 / 0.08);
+  transform: translateY(-1px);
 }
 
 /* =============================================================================
@@ -1451,21 +1494,41 @@
 
 .entity-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-grid-3);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap-grid-3);
+  row-gap: var(--stack-lg);
   margin-top: var(--stack-xl);
+  align-items: stretch;
 }
 
 .entity-card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   background-color: var(--surface-raised);
-  padding: clamp(28px, 2.4vw, 42px) clamp(24px, 2vw, 34px);
-  transition: transform var(--motion-normal) var(--ease-standard);
+  padding: clamp(28px, 2.4vw, 36px);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-card);
+  text-align: left;
+  transition:
+    transform var(--motion-normal) var(--ease-standard),
+    box-shadow var(--motion-normal) var(--ease-standard),
+    border-color var(--motion-normal) var(--ease-standard);
 }
 
 .entity-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--card-border-hover);
+}
+
+.entity-card__category,
+.entity-card__name,
+.entity-card__legal,
+.entity-card__body,
+.entity-card__focus {
+  margin: 0;
 }
 
 .entity-card__category {
@@ -1473,18 +1536,20 @@
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  padding-bottom: 12px;
 }
 
 .entity-card__name {
   font-size: var(--fs-h3);
-  margin-bottom: 6px;
+  padding-bottom: 8px;
 }
 
 .entity-card__legal {
   color: var(--fg-muted);
   font-size: 14px;
-  margin-bottom: 16px;
+  line-height: 1.45;
+  min-height: 1.45em;
+  padding-bottom: 16px;
 }
 
 .entity-card__body,
@@ -1493,43 +1558,117 @@
   font-size: 15px;
 }
 
+.entity-card__body {
+  flex: 1 1 auto;
+  padding-bottom: 16px;
+}
+
 .entity-card__focus {
-  margin-top: 16px;
+  padding-bottom: 0;
 }
 
 .entity-card__focus span {
   color: var(--accent);
 }
 
-.entity-card__cta {
+.entity-card__actions {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
   margin-top: auto;
-  padding-top: var(--stack-md);
-  align-self: flex-start;
+  padding-top: 28px;
+}
+
+.practice-card__footer .btn {
+  padding: 11px 16px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.entity-card__cta {
+  margin: 0;
+  align-self: auto;
+}
+
+.entity-card__cta.btn {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 16px;
+  font-size: 13px;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.25;
+}
+
+@media (min-width: 1024px) {
+  @supports (grid-template-rows: subgrid) {
+    .entity-grid {
+      row-gap: 0;
+    }
+
+    .entity-card {
+      grid-row: span 6;
+      display: grid;
+      grid-template-rows: subgrid;
+      align-items: start;
+    }
+
+    .entity-card__body {
+      flex: none;
+      align-self: start;
+    }
+
+    .entity-card__actions {
+      margin-top: 0;
+      align-self: stretch;
+      align-items: center;
+    }
+  }
 }
 
 .leader-card,
 .pathway-card {
   display: flex;
   flex-direction: column;
-  min-height: 320px;
-  padding: 36px 28px;
-  border: 1px solid var(--hairline);
+  min-width: 0;
+  height: 100%;
+  padding: clamp(24px, 2.2vw, 32px);
+  text-align: left;
+  border: 1px solid var(--card-border);
   background-color: var(--surface-light-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--motion-normal) var(--ease-standard),
+    box-shadow var(--motion-normal) var(--ease-standard),
+    border-color var(--motion-normal) var(--ease-standard);
 }
 
-.leader-card {
+.leader-card:hover,
+.pathway-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--card-border-hover);
+}
+
+.leader-card--dark {
   background-color: var(--surface-dark);
   color: var(--text-on-dark);
-  border-color: transparent;
+  --card-border: rgb(255 255 255 / 0.08);
+  --card-border-hover: rgb(207 175 113 / 0.38);
+  --shadow-card: 0 8px 28px rgb(0 0 0 / 0.18);
+  --shadow-card-hover: 0 14px 36px rgb(0 0 0 / 0.28);
+  border-color: var(--card-border);
 }
 
-.leader-card .attorney-card__name,
-.leader-card .attorney-card__role {
-  color: inherit;
-}
-
-.leader-card .attorney-card__role {
-  color: var(--gold);
+.leader-card__kicker,
+.leader-card__title,
+.leader-card__tagline,
+.leader-card__body,
+.leader-card__actions {
+  margin: 0;
+  min-width: 0;
 }
 
 .leader-card__kicker {
@@ -1537,26 +1676,111 @@
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 18px;
+  padding-bottom: 16px;
 }
 
-.leader-card__also,
-.leader-card__note {
+.leader-card__title {
+  font-size: var(--fs-h4);
+  padding-bottom: 8px;
+  overflow-wrap: break-word;
+}
+
+.leader-card__tagline {
+  color: var(--accent);
+  font-size: var(--fs-xs);
+  padding-bottom: 16px;
+  overflow-wrap: break-word;
+}
+
+.leader-card__body {
   color: var(--fg-muted);
   font-size: 15px;
-  margin-top: 12px;
+  line-height: 1.55;
+  flex: 1 1 auto;
+  overflow-wrap: break-word;
 }
 
-.leader-card .leader-card__also,
-.leader-card .leader-card__note {
+.leader-card--dark .leader-card__kicker,
+.leader-card--dark .leader-card__tagline {
+  color: var(--gold);
+}
+
+.leader-card--dark .leader-card__title {
+  color: inherit;
+}
+
+.leader-card--dark .leader-card__body {
   color: var(--text-muted-on-dark);
 }
 
-.pathway-card .btn {
+.leader-card__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: auto;
-  align-self: flex-start;
-  padding-top: 15px;
-  margin-block-start: var(--stack-lg);
+  padding-top: 28px;
+}
+
+.leader-card__cta.btn {
+  box-sizing: border-box;
+  width: min(13.75rem, 100%);
+  max-width: 100%;
+  min-width: 0;
+  height: 3rem;
+  min-height: 3rem;
+  padding: 0 16px;
+  font-size: 13px;
+  gap: 8px;
+  flex: 0 1 auto;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  @supports (grid-template-rows: subgrid) {
+    .attorneys__grid {
+      row-gap: 0;
+    }
+
+    .leader-card,
+    .pathway-card {
+      grid-row: span 5;
+      display: grid;
+      grid-template-rows: subgrid;
+      align-items: start;
+      height: auto;
+    }
+
+    .leader-card__body {
+      flex: none;
+      align-self: start;
+    }
+
+    .leader-card__actions {
+      margin-top: 0;
+      align-self: stretch;
+    }
+  }
+
+  @supports not (grid-template-rows: subgrid) {
+    .leader-card__kicker {
+      min-height: calc(1.2em + 16px);
+    }
+
+    .leader-card__title {
+      min-height: calc(2.4em + 8px);
+    }
+
+    .leader-card__tagline {
+      min-height: calc(2.4em + 16px);
+    }
+
+    .leader-card__body {
+      min-height: 4.8em;
+    }
+  }
 }
 
 .form-panel__title {
@@ -1579,19 +1803,27 @@
 
 .field select {
   appearance: none;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--field-border);
+  background: rgb(255 255 255 / 0.03);
+  border: 1px solid var(--field-border);
   color: inherit;
   font: inherit;
-  padding: 8px 0 10px;
+  padding: 12px 14px;
   width: 100%;
-  border-radius: 0;
+  border-radius: var(--radius-control);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
 }
 
 .field select:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgb(207 175 113 / 0.18);
+}
+
+.field option {
+  color: var(--text-on-light);
+  background-color: var(--surface-light);
 }
 
 .event-meta {
@@ -1614,9 +1846,12 @@
 }
 
 .page-hero {
+  position: relative;
   padding-top: calc(var(--h-header-row-1) + var(--h-header-row-2) + var(--stack-xl));
   padding-bottom: var(--section-pad-y);
-  background-color: var(--surface-dark);
+  background:
+    linear-gradient(180deg, var(--surface-deep) 0%, var(--surface-dark) 100%);
+  border-bottom: 1px solid rgb(255 255 255 / 0.06);
 }
 
 .page-hero__eyebrow {
@@ -1624,18 +1859,20 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 12px;
+  font-weight: var(--fw-medium);
   margin-bottom: 16px;
 }
 
 .page-hero__title {
-  font-size: var(--fs-section);
+  font-size: clamp(32px, 2.8vw, 48px);
   max-width: 18ch;
 }
 
 .page-hero__lead {
   color: var(--text-muted-on-dark);
-  max-width: 62ch;
-  margin-top: var(--stack-sm);
+  max-width: 58ch;
+  margin-top: var(--stack-md);
+  font-size: var(--fs-body-lg);
 }
 
 .entity-directory {
@@ -1690,6 +1927,19 @@
 .training-card {
   background-color: var(--surface-dark);
   padding: clamp(28px, 3vw, 48px);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--motion-normal) var(--ease-standard),
+    box-shadow var(--motion-normal) var(--ease-standard),
+    border-color var(--motion-normal) var(--ease-standard);
+}
+
+.training-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--card-border-hover);
 }
 
 .training-card__title {

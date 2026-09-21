@@ -69,9 +69,9 @@ export const intro = {
   body: "Ojijo Group brings together specialist capabilities that help organisations identify risks early, put the right legal, HR, governance and organisational measures in place, and protect their people, processes and interests. Understand the Group here, then continue to the specialist destination the work requires.",
   signatureName: "Kepher Kiche Ojijo",
   signatureRole: "Managing Director, Ojijo Group",
-  tiles: [
-    { value: "Nairobi", label: "Based in\nKilimani" },
-    { value: "Kenya", label: "Serving organisations\n& professionals" },
+  presence: [
+    { lead: "Based in ", emphasis: "Kilimani, Nairobi" },
+    { lead: "Serving organisations ", emphasis: "across Kenya" },
   ],
 };
 
@@ -269,11 +269,34 @@ export const entities: Entity[] = [
 ];
 
 export const leadership = {
+  eyebrow: "GROUP LEADERSHIP",
   name: "Kepher Kiche Ojijo",
   role: "Managing Director, Ojijo Group",
-  also: "Also listed as Managing Partner, Ojijo Senaji Advocates.",
-  note: "Listed among the Forty Under 40 Africa 2026 Law nominees, representing Ojijo Group.",
+  body: "Nominated for the Forty Under 40 Africa 2026 Law list.",
+  cta: "Get in touch",
+  href: "/contact",
 };
+
+export const specialistPractices = [
+  {
+    eyebrow: "SPECIALIST PRACTICE",
+    name: "Ojijo HR Law",
+    role: "Employment, labour and HR consulting",
+    body: "Employer-side employment law, HR compliance and workplace training for modern organisations.",
+    cta: "Visit the practice",
+    href: "https://ojijohrlaw.com/",
+    external: true,
+  },
+  {
+    eyebrow: "SPECIALIST PRACTICE",
+    name: "Ojijo Senaji Advocates",
+    role: "Full-service legal practice",
+    body: "A Nairobi law firm for matters that sit outside employment and HR.",
+    cta: "Visit the law firm",
+    href: "https://ojijosenaji.com/",
+    external: true,
+  },
+] as const;
 
 export interface TrainingEvent {
   id: string;

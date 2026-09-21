@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Mail, Menu, Phone, X } from "lucide-react";
 import { brand, contactDetails, navLinks } from "@/content/group";
@@ -11,6 +11,10 @@ export default function SiteHeader() {
   const overHero = pathname === "/";
 
   useScrollProgress(headerRef);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -49,7 +53,7 @@ export default function SiteHeader() {
             <NavLink
               key={link.to}
               to={link.to}
-              className="main-nav__link"
+              className={({ isActive }) => (isActive ? "main-nav__link active" : "main-nav__link")}
               end={link.to === "/"}
               onClick={() => setMenuOpen(false)}
             >

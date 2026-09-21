@@ -6,7 +6,7 @@ export default function Testimonials() {
   return (
     <section className="section section--dark on-dark" id="entities" aria-labelledby="entities-title">
       <div className="container">
-        <div className="section-head--center">
+        <div className="section-head--center reveal">
           <h2 className="section-heading" id="entities-title">
             {entityGateway.heading}
           </h2>
@@ -25,14 +25,18 @@ export default function Testimonials() {
             >
               <p className="entity-card__category">{entity.category}</p>
               <h3 className="entity-card__name">{entity.name}</h3>
-              {entity.legalName ? <p className="entity-card__legal">{entity.legalName}</p> : null}
+              <p className="entity-card__legal" aria-hidden={entity.legalName ? undefined : true}>
+                {entity.legalName || "\u00a0"}
+              </p>
               <p className="entity-card__body">{entity.description}</p>
               <p className="entity-card__focus">
                 <span>Focus.</span> {entity.focus}
               </p>
-              <SmartLink className="btn btn--learn entity-card__cta" href={entity.href} external={entity.external}>
-                {entity.cta}
-              </SmartLink>
+              <div className="entity-card__actions">
+                <SmartLink className="btn btn--learn entity-card__cta" href={entity.href} external={entity.external}>
+                  {entity.cta}
+                </SmartLink>
+              </div>
             </article>
           ))}
         </div>

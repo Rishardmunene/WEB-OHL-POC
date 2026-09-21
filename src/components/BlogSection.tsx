@@ -18,7 +18,7 @@ export default function BlogSection() {
   return (
     <section className="section section--dark on-dark" aria-labelledby="blog-title">
       <div className="container">
-        <div className="section-head--center">
+        <div className="section-head--center reveal">
           <h2 className="section-heading" id="blog-title">
             Upcoming training
           </h2>

@@ -40,11 +40,14 @@
   .practice__grid,
   .blog__grid,
   .stats-row,
-  .entity-grid,
   .blog__grid--sparse,
   .contact-strip,
   .entity-profile__dl {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .entity-grid {
+    grid-template-columns: 1fr;
   }
 
   .testimonials__grid {
@@ -111,8 +114,7 @@
   }
 
   .attorneys__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--stack-sm);
+    grid-template-columns: 1fr;
   }
 }
 
@@ -122,6 +124,11 @@
    operable and focus-trapped by the primitive that renders it.
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
+  :root {
+    --radius-card: 12px;
+    --radius-feature: 14px;
+  }
+
   .practice__grid,
   .blog__grid,
   .blog__grid--sparse,
@@ -156,9 +163,15 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background-color: var(--surface-deep);
+    background-color: rgb(22 29 40 / 0.96);
+    backdrop-filter: blur(16px);
     border-top: 1px solid var(--hairline-on-dark);
+    box-shadow: var(--shadow-3);
     padding: var(--stack-sm) 20px var(--stack-md);
+  }
+
+  .main-nav__link::after {
+    display: none;
   }
 
   .main-nav[data-open="false"] {
@@ -251,14 +264,6 @@
    < 480 — stat tiles stack; the two-sub-column footer list collapses.
    -------------------------------------------------------------------------- */
 @media (max-width: 479px) {
-  .stat-tiles {
-    flex-direction: column;
-  }
-
-  .stat-tile {
-    min-width: 0;
-  }
-
   .footer-col__links--split {
     grid-template-columns: 1fr;
   }
@@ -270,5 +275,26 @@
   .attorney-card__social {
     left: 6%;
     right: 6%;
+  }
+}
+
+/* Presence strip: stack when the intro text column is too narrow (2-col layout
+   below 1280) or on phones. 768–1023 is a full-width intro column, so the row
+   can stay. */
+@media (max-width: 767px), (min-width: 1024px) and (max-width: 1279px) {
+  .presence-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .presence-strip__item {
+    width: 100%;
+  }
+
+  .presence-strip__rule {
+    width: 100%;
+    height: 1px;
+    margin-block: 16px;
   }
 }

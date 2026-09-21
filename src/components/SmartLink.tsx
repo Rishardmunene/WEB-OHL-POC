@@ -20,7 +20,7 @@ export default function SmartLink({ href, children, className, external }: Props
         rel="noopener noreferrer"
       >
         {children}
-        <ArrowUpRight size={15} strokeWidth={1.75} aria-hidden="true" />
+        <ArrowUpRight className="smart-link__icon" size={15} strokeWidth={1.75} aria-hidden="true" />
         <span className="visually-hidden"> (opens in a new tab)</span>
       </a>
     );

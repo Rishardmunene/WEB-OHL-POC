@@ -56,10 +56,10 @@ export function FacebookIcon(props: IconProps) {
   );
 }
 
-export function TwitterIcon(props: IconProps) {
+export function XIcon(props: IconProps) {
   return (
-    <Svg {...props}>
-      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+    <Svg {...props} fill="currentColor" stroke="none">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.727-8.822L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
     </Svg>
   );
 }
@@ -84,6 +84,6 @@ export function LinkedinIcon(props: IconProps) {
    not verified there, so it is omitted rather than linked to a guess. */
 export const socialLinks = [
   { label: "Instagram", Icon: InstagramIcon, href: "https://instagram.com/ojijo_group" },
-  { label: "X (Twitter)", Icon: TwitterIcon, href: "https://x.com/OjijoGroup" },
+  { label: "X", Icon: XIcon, href: "https://x.com/OjijoGroup" },
   { label: "LinkedIn", Icon: LinkedinIcon, href: "https://www.linkedin.com/company/ojijo-group-originals" },
 ];

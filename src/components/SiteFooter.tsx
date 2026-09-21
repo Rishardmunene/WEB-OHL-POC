@@ -58,10 +58,10 @@ export default function SiteFooter() {
           </p>
 
           <div className="site-footer__social">
-            <span>Follow :</span>
+            <span>Follow</span>
             {socialLinks.map(({ label, Icon, href }) => (
               <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer">
-                <Icon size={16} />
+                <Icon size={14} />
               </a>
             ))}
           </div>
